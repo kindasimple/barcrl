@@ -18,6 +18,34 @@
     <p>
       <div class="loading">Loading..</div>
     </p>
+	
+	<select
+    ng-model="cost"
+    name="cost"
+    required="true"
+    ng-options="cost.name for cost in costs">
+    <option value="">Cost</option>
+  </select>
+  
+  <select
+    ng-model="alcohol"
+    name="alcohol"
+    required="true"
+    ng-options="alcohol.name for alcohol in alcohols">
+    <option value="">Alcohol Density</option>
+  </select>
+  
+  <select
+    ng-model="distance"
+    name="distance"
+    required="true"
+    ng-options="distance.name for distance in distances">
+    <option value="">Distance</option>
+  </select>
+
+	<p>Cost selected is {{cost.name}}</p>
+	<p>Alcohol selected is {{alcohol.name}}</p>
+	<p>Distance selected is {{distance.name}}</p>
 
     <accordion close-others="oneAtATime">
       <accordion-group heading="{{route.title}}" data-ng-repeat="route in routes">

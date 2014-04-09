@@ -3,7 +3,7 @@ var serviceModule = angular.module('module.service', []);
 
 serviceModule.service('crawlrService', ['$http', '$q', function($http, $q){
   return {
-    getRequestId: function () {
+    getGenericRouteRequestId: function () {
       var deferred = $q.defer();
       $http({
         method: 'GET',
@@ -30,6 +30,23 @@ serviceModule.service('crawlrService', ['$http', '$q', function($http, $q){
         deferred.reject('Error getting crawlr front page.');
       });
       return deferred.promise;
-    }
+    },
+    getPreferenceRouteRequestId: function (cost,alc,distance,start) {
+        var deferred = $q.defer();
+       
+        $http({
+          method: 'POST',
+          url: 'http://crawlrapi.herokuapp.com/route/'+ start,
+          data: 'cost=' + cost + '&alcohol=' + alc + '&distance=' + distance,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .success(function(result) {
+          deferred.resolve(result);
+        })
+        .error(function () {
+          deferred.reject('Error getting crawlr front page.');
+        });
+        return deferred.promise;
+      }
   };
 }]);

@@ -26,6 +26,6 @@ angular
         redirectTo: '/'
       });
 
-    // configure html5 to get links working on jsfiddle
-    $locationProvider.html5Mode(true);
+    // configure html5 to allow make up for lack of url rewriting on gh-pages
+    $locationProvider.html5Mode(false);
   }]);
