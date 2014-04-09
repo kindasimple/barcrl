@@ -8,7 +8,7 @@ angular.module('barcrlApp')
       { id: 'Pickles', name: 'Pickles'}
     ];
 
-    $scope.isDoneLoading = false;
+    
   })
 
   .controller('CrawlCtrl', function($scope, crawlrService){
