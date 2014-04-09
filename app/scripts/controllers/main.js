@@ -10,6 +10,8 @@ angular.module('module.controller', ['module.service'])
   }])
 
   .controller('CrawlCtrl', ['$scope', 'crawlrService', function($scope, crawlrService){
+    $scope.start = 'Inferno';
+    
 	  $scope.costs = [
 	    {name:1},
 	    {name:10},
@@ -36,27 +38,35 @@ angular.module('module.controller', ['module.service'])
       $scope.routes = routes;
     }
 
-//    crawlrService.getGenericRouteRequestId()
-//      .then(function(result) {
-//        saveRequest(result);
-//        var r = result;
-//        setTimeout( function () {
-//          crawlrService.getResult(r)
-//          .then(function(result){
-//            loadRoutes(result);
-//          });
-//        }, 7000);
-//      });
+    crawlrService.getGenericRouteRequestId($scope.start)
+      .then(function(result) {
+        saveRequest(result);
+        var r = result;
+        setTimeout( function () {
+          crawlrService.getResult(r)
+          .then(function(result){
+            loadRoutes(result);
+          });
+        }, 7000);
+      });  
     
-    crawlrService.getPreferenceRouteRequestId(10,5,8,'Inferno')
-    .then(function(result) {
-      saveRequest(result);
-      var r = result;
-      setTimeout( function () {
-        crawlrService.getResult(r)
-        .then(function(result){
-          loadRoutes(result);
-        });
-      }, 7000);
-    });
-  }]);
+    $scope.refineTour=function(){
+    	console.log('Something should happen');
+    	console.log($scope.cost.name);
+    	
+    	  crawlrService.getPreferenceRouteRequestId($scope.cost.name,$scope.alcohol.name,$scope.distance.name,$scope.start)
+    	    .then(function(result) {
+    	      saveRequest(result);
+    	      var r = result;
+    	      setTimeout( function () {
+    	        crawlrService.getResult(r)
+    	        .then(function(result){
+    	          loadRoutes(result);
+    	        });
+    	      }, 7000);
+    	    });
+    };
+    
+  
+  });
+
