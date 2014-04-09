@@ -1,6 +1,10 @@
 BarCrl
 ======
 
+## Dependencies
+
+- Ruby
+- Compass
 ## Installation
 
 Install node packages with npm installer
@@ -8,8 +12,15 @@ Install node packages with npm installer
 ```
 npm install
 ```
-Use bower to serve the application
+Install compass for SASS
 
 ```
-bower serve
+gem update --system
+gem install compass
+```
+
+Use grunt to serve the application
+
+```
+grunt serve
 ```
