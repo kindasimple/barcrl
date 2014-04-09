@@ -11,7 +11,7 @@ angular.module('module.controller', ['module.service'])
 
   .controller('CrawlCtrl', ['$scope', 'crawlrService', function($scope, crawlrService){
     $scope.start = 'Inferno';
-    
+
 	  $scope.costs = [
 	    {name:1},
 	    {name:10},
@@ -66,7 +66,5 @@ angular.module('module.controller', ['module.service'])
     	      }, 7000);
     	    });
     };
-    
-  
-  });
+  }]);
 
