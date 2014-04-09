@@ -1,17 +1,15 @@
 'use strict';
 
-angular.module('barcrlApp')
-  .controller('MainCtrl', function ($scope) {
+angular.module('module.controller', ['module.service'])
+  .controller('MainCtrl', ['$scope', function ($scope) {
     $scope.bars = [
       { id: 'Inferno', name: 'Inferno'},
       { id: 'Bar.Bleu', name: 'Bar Bleu'},
       { id: 'Pickles', name: 'Pickles'}
     ];
+  }])
 
-    
-  })
-
-  .controller('CrawlCtrl', function($scope, crawlrService){
+  .controller('CrawlCtrl', ['$scope', 'crawlrService', function($scope, crawlrService){
     function saveRequest(requestId){
       $scope.requestId = requestId;
     }
@@ -31,4 +29,4 @@ angular.module('barcrlApp')
           });
         }, 7000);
       });
-  });
+  }]);

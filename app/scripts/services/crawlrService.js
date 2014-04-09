@@ -1,7 +1,7 @@
 'use strict';
 var serviceModule = angular.module('module.service', []);
 
-serviceModule.service('crawlrService', function($http, $q){
+serviceModule.service('crawlrService', ['$http', '$q', function($http, $q){
   return {
     getRequestId: function () {
       var deferred = $q.defer();
@@ -32,4 +32,4 @@ serviceModule.service('crawlrService', function($http, $q){
       return deferred.promise;
     }
   };
-});
+}]);

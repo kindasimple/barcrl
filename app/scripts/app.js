@@ -7,22 +7,15 @@ angular
     'ngSanitize',
     'ngRoute',
     'module.service',
+    'module.controller',
     'ui.bootstrap'
   ])
 
-  .config(function ($routeProvider, $locationProvider) {
+  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/Crawl/:barId', {
         templateUrl: '/views/crawl.html',
         controller: 'CrawlCtrl',
-        resolve: {
-          // I will cause a 1 second delay
-          delay: function($q, $timeout) {
-            var delay = $q.defer();
-            $timeout(delay.resolve, 1000);
-            return delay.promise;
-          }
-        }
       })
       .when('/', {
         templateUrl: 'views/main.html',
@@ -35,4 +28,4 @@ angular
 
     // configure html5 to get links working on jsfiddle
     $locationProvider.html5Mode(true);
-  });
+  }]);
