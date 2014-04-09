@@ -48,7 +48,12 @@ angular.module('barcrlApp')
 //            loadRoutes(result);
 //          });
 //        }, 7000);
-//      });
+//      });  
+    
+    $scope.refineTour=function(){
+    	console.log('Something should happen');
+    	console.log($scope.cost.name);
+    }
     
     crawlrService.getPreferenceRouteRequestId(10,5,8,'Inferno')
     .then(function(result) {
@@ -62,3 +67,4 @@ angular.module('barcrlApp')
       }, 7000);
     });
   });
+
