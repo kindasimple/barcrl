@@ -53,7 +53,7 @@
           <div class="row">
             <p>{{route.title}}</p>
             <div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars">
-              <p>{{bar}}</p>
+              <p>{{bar | ReplaceDots:" " }}</p>
             </div>
           </div>
         </div>
