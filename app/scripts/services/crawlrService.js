@@ -3,11 +3,11 @@ var serviceModule = angular.module('module.service', []);
 
 serviceModule.service('crawlrService', function($http, $q){
   return {
-    getGenericRouteRequestId: function () {
+    getGenericRouteRequestId: function (start) {
       var deferred = $q.defer();
       $http({
         method: 'GET',
-        url: 'http://crawlrapi.herokuapp.com/route/Inferno'
+        url: 'http://crawlrapi.herokuapp.com/route/' + start
       })
       .success(function(result) {
         deferred.resolve(result);
