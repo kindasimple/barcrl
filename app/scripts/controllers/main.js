@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('barcrlApp')
-  .controller('MainCtrl', function ($scope, $location) {
+  .controller('MainCtrl', function ($scope) {
     $scope.bars = [
       { id: 'Inferno', name: 'Inferno'},
       { id: 'Bar.Bleu', name: 'Bar Bleu'},
       { id: 'Pickles', name: 'Pickles'}
     ];
 
-    $scope.$location = $location;
+    $scope.isDoneLoading = false;
   })
 
   .controller('CrawlCtrl', function($scope, crawlrService){
