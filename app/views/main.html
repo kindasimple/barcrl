@@ -1,0 +1,61 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#">About</a></li>
+    <li><a ng-href="#">Contact</a></li>
+  </ul>
+  <h3 class="text-muted">barcrl</h3>
+</div>
+
+<div class="jumbotron" ng-control="MainCtrl">
+  <h1>BarCrl</h1>
+  <p class="lead">
+    <img src="/images/ic_launcher.png" alt="BarCrl Logo"><br>
+    A highly optimized bar crawl generator.
+  </p>
+  Start your crawl at 
+  <div class="btn-group">
+    <a href="/Crawl/Inferno" >Start at Inferno</a>
+    <button type="button" class="btn btn-default">Random</button>
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Choose a starting point
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li ng-repeat="bar in bars" ng-model="bar.name" />
+      </ul>
+    </div>
+  </div>
+
+  <select
+    ng-model="bar"
+    name="start"
+    required="true"
+    ng-options="bar.name for bar in bars">
+    <option value="">-- choose bar --</option>
+  </select>
+
+  <br/><br/>
+  <p><a class="btn btn-lg btn-success" ng-href ng-click="createTour()">Create a Tour! <span class="glyphicon glyphicon-ok"></span></a></p>
+</div>
+
+<div class="row marketing" >
+  <h4>Local Bars</h4>
+  <p>
+    Find Bars in your area
+  </p>
+
+  <h4>Preferences</h4>
+  <p>
+    Check out bars that are tailored to your preferences
+  </p>
+
+  <h4>Optimize for</h4>
+  <p>Distance, Cost, whatever is important to you.</p>
+</div>
+
+<div class="footer">
+  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+</div>

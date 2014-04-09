@@ -1,0 +1,36 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#">About</a></li>
+    <li><a ng-href="#">Contact</a></li>
+  </ul>
+  <h3 class="text-muted">barcrl</h3>
+</div>
+
+<div class="jumbotron" ng-control="MainCtrl">
+  <h1>BarCrl</h1>
+  <p class="lead">
+    <img src="/images/ic_launcher.png" alt="Bar Crawler Logo"><br>
+    Processing Route
+  </p>
+
+  <div ng-controller="CrawlCtrl">
+
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="{{route.title}}" data-ng-repeat="route in routes">
+    <div class="container-fluid" >
+      <div class="row">
+        <p>{{route.title}}</p>
+        <div class="event col-xs-11 col-sm-4 col-md-2" data-ng-repeat="bar in route.bars">
+          <p>{{bar}}</p>
+        </div>
+      </div>
+    </div>
+      
+    </accordion-group>
+  </accordion>
+</div>
+
+<div class="footer">
+  <p><span class="glyphicon glyphicon-heart"></span> Made With Love</p>
+</div>
