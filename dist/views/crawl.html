@@ -1,1 +1,22 @@
-<div class="header"><ul class="nav nav-pills pull-right"><li class="active"><a ng-href="#">Home</a></li><li><a ng-href="#">About</a></li><li><a ng-href="#">Contact</a></li></ul><h3 class="text-muted">barcrl</h3></div><div class="jumbotron" ng-control="MainCtrl"><h1>BarCrl</h1><p class="lead"><img src="/images/51a6f560.ic_launcher.png" alt="Bar Crawler Logo"><br></p><div ng-controller="CrawlCtrl"><p><div class="loading">Loading..</div></p><select ng-model="cost" name="cost" required ng-options="cost.name for cost in costs"><option value="">Cost</select><select ng-model="alcohol" name="alcohol" required ng-options="alcohol.name for alcohol in alcohols"><option value="">Alcohol Density</select><select ng-model="distance" name="distance" required ng-options="distance.name for distance in distances"><option value="">Distance</select><p>Cost selected is {{cost.name}}</p><p>Alcohol selected is {{alcohol.name}}</p><p>Distance selected is {{distance.name}}</p><accordion close-others="oneAtATime"><accordion-group heading="{{route.title}}" data-ng-repeat="route in routes"><div class="container-fluid"><div class="row"><p>{{route.title}}</p><div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars"><p>{{bar | ReplaceDots:" " }}</p></div></div></div></accordion-group></accordion><p><a class="btn btn-lg btn-success" ng-click="refineTour()">Refine Your Tour! <span class="glyphicon glyphicon-ok"></span></a></p></div></div><div class="footer"><p><span class="glyphicon glyphicon-heart"></span> Made With Love</p></div>
+<div class="header"><ul class="nav nav-pills pull-right"><li class="active"><a ng-href="#">Home</a></li><li><a ng-href="#">About</a></li><li><a ng-href="#">Contact</a></li></ul><h3 class="text-muted">crawlr</h3></div><div ng-controller="CrawlCtrl"><div><p class="bg-primary" data-ng-bind="status" style="padding: 12px"></div><div class="jumbotron"><h1>crawlr</h1><p class="lead"><img src="/images/8328fe77.ic_launcher.png" alt="Bar Crawler Logo"><br></p></div><!-- Button trigger modal --><button class="btn btn-primary btn-lg" ng-click="open()">Refine Your Tour!</button><script type="text/ng-template" id="myPreferences.html"><div class="modal-header">
+          <h3>Refine Your Tour</h3>
+      </div>
+      <div class="modal-body">
+          <p>Cost Rating:</p>
+          <input ng-model="costValue" type="text" id="costSlider" slider options="optionsCost" />
+          <p>Alcohol Rating:</p>
+          <input ng-model="alcValue" type="text" id="alcSlider" slider options="optionsAlc" />
+          <p>Distance Rating:</p>
+          <input ng-model="distValue" type="text" id="distSlider" slider options="optionsDist" />
+
+          <ul>
+              <li ng-repeat="item in items">
+                  <a ng-click="selected.item = item">{{ item }}</a>
+              </li>
+          </ul>
+          Selected: <b>{{ selected.item }}</b>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok()">OK</button>
+          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      </div></script><accordion close-others="oneAtATime"><accordion-group heading="{{route.title}}" data-ng-repeat="route in routes"><div class="container-fluid"><div class="row"><p>{{route.title}}</p><div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars"><div class="bar"><img src="images/bars/{{bar}}.png" class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px"><p>{{$index + 1}}. {{bar | ReplaceDots:" " }}</p></div></div></div></div></accordion-group></accordion></div><div class="footer"><p><span class="glyphicon glyphicon-heart"></span> Made With Love</p></div>
