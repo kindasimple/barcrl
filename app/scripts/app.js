@@ -11,6 +11,7 @@ angular
     'module.filter',
     'ui.bootstrap',
     'ngSlider'
+    'chieffancypants.loadingBar'
   ])
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

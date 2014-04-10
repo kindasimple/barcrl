@@ -9,7 +9,7 @@ angular.module('module.controller', ['module.service'])
     ];
   }])
 
-  .controller('CrawlCtrl', ['$scope', 'crawlrService', function($scope, crawlrService){
+  .controller('CrawlCtrl', ['$scope', 'crawlrService', 'cfpLoadingBar', function($scope, crawlrService, cfpLoadingBar){
 	  
 	  //initiate cost slider parms
 	  $scope.costValue = "50";
@@ -65,14 +65,28 @@ angular.module('module.controller', ['module.service'])
       $scope.routes = routes;
     }
 
+    function showStatusAsBusy(message) {
+      message = typeof message !== 'undefined' ? message : 'Creating Bar Crawl'; //set default
+      $scope.status = message;
+      cfpLoadingBar.start();
+    }
+
+    function showStatusAsReady(message) {
+      message = typeof message !== 'undefined' ? message : 'Creating Bar Crawl'; //set default
+      $scope.status = message;
+      cfpLoadingBar.complete();
+    }
+
     crawlrService.getGenericRouteRequestId($scope.start)
       .then(function(result) {
+        showStatusAsBusy('Creating a Generic Bar Crawl');
         saveRequest(result);
         var r = result;
         setTimeout( function () {
           crawlrService.getResult(r)
           .then(function(result){
             loadRoutes(result);
+            showStatusAsReady('We found you a tour! You can refine it if you\'d like.');
           });
         }, 7000);
       });
@@ -83,12 +97,14 @@ angular.module('module.controller', ['module.service'])
 
       crawlrService.getPreferenceRouteRequestId($scope.costValue,$scope.alcValue,$scope.disValue,$scope.start)
         .then(function(result) {
+          showStatusAsBusy('Creating a Custom Bar Crawl based on your preferences.');
           saveRequest(result);
           var r = result;
           setTimeout( function () {
             crawlrService.getResult(r)
             .then(function(result){
               loadRoutes(result);
+              showStatusAsReady('We created a custom tour for you!');
             });
           }, 7000);
         });

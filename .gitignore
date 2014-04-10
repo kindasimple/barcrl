@@ -21,3 +21,4 @@ npm-debug.log
 /scripts/bower/bower-*
 .tmp/*
 .project
+dist/*
