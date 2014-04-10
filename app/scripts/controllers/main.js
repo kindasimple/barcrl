@@ -11,53 +11,37 @@ angular.module('module.controller', ['module.service'])
 
   .controller('CrawlCtrl', ['$scope', 'crawlrService', 'cfpLoadingBar', function($scope, crawlrService, cfpLoadingBar){
 	  
-	  //initiate cost slider parms
-	  $scope.costValue = "50";
-      $scope.optionsCost = {       
-        from: 1,
-        to: 100,
-        step: 1,
-        dimension: "  $$"         
-      };
+	//initiate cost slider parms
+    $scope.costValue = '50';
+    $scope.optionsCost = {
+      from: 1,
+      to: 100,
+      step: 1,
+      dimension: '  $$'
+    };
       
-      //initiate alc slider parms
-	  $scope.alcValue = "50";
-      $scope.optionsAlc = {       
-        from: 1,
-        to: 100,
-        step: 1,
-        dimension: ""         
-      };
+    //initiate alc slider parms
+    $scope.alcValue = '50';
+    $scope.optionsAlc = {
+      from: 1,
+      to: 100,
+      step: 1,
+      dimension: ''
+    };
       
-      //initiate distance slider parms
-	  $scope.distValue = "50";
-      $scope.optionsDist = {       
-        from: 1,
-        to: 100,
-        step: 1,
-        dimension: ""         
-      };
+    //initiate distance slider parms
+    $scope.distValue = '50';
+    $scope.optionsDist = {
+      from: 1,
+      to: 100,
+      step: 1,
+      dimension: ''
+    };
 	  
-	  $scope.start = 'Inferno';
-//	  $scope.costs = [
-//	    {name:1},
-//	    {name:10},
-//	    {name:100}
-//	  ];
-//	  
-//	  $scope.alcohols = [
-//      {name:1},
-//      {name:10},
-//      {name:100}
-//    ];
+    $scope.start = 'Inferno';
+
 	  
-//	  $scope.distances = [
-//      {name:1},
-//      {name:10},
-//      {name:100}
-//    ];
-	  
-	  function saveRequest(requestId){
+    function saveRequest(requestId){
       $scope.requestId = requestId;
     }
 
