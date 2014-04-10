@@ -15,9 +15,10 @@ angular.module('module.controller', ['module.service'])
     };
   })
 
-  .controller('CrawlCtrl', ['$scope', 'crawlrService', function($scope, crawlrService){
+  .controller('CrawlCtrl', ['$scope', '$location' 'crawlrService', function($scope, $location, crawlrService){
     $scope.start = 'Inferno';
-
+    console.log($location.path());
+    
 	  $scope.costs = [
 	    {name:1},
 	    {name:10},
