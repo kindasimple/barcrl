@@ -54,11 +54,11 @@ Public releases are available at the custom domain [barcrl.com](http://barcrl.co
 **description**: The application is staged on a Github Project page. A deployment can be accomplished easily on the CLI 
 
 ```
-## build with grunt to /dest folder
+## build with grunt to /dist folder
 grunt build
 
 ## restore CNAME file
-git checkout dest/CNAME
+git checkout dist/CNAME
 
 ## deploy to gh-pages branch
 git subtree push --prefix dist origin gh-pages

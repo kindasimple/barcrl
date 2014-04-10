@@ -9,16 +9,8 @@ angular.module('module.controller', ['module.service'])
     ];
   }])
 
-  .filter('ReplaceDots', function(){
-    return function(input, replacement){
-      return input.replace(/\./g, replacement);
-    };
-  })
-
-  .controller('CrawlCtrl', ['$scope', '$location' 'crawlrService', function($scope, $location, crawlrService){
+  .controller('CrawlCtrl', ['$scope', 'crawlrService', function($scope, crawlrService){
     $scope.start = 'Inferno';
-    console.log($location.path());
-    
 	  $scope.costs = [
 	    {name:1},
 	    {name:10},

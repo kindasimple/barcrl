@@ -8,6 +8,7 @@ angular
     'ngRoute',
     'module.service',
     'module.controller',
+    'module.filter',
     'ui.bootstrap'
   ])
 
