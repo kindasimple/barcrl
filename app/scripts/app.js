@@ -9,7 +9,8 @@ angular
     'module.service',
     'module.controller',
     'module.filter',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'chieffancypants.loadingBar'
   ])
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
