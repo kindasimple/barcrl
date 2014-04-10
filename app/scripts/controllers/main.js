@@ -9,8 +9,8 @@ angular.module('module.controller', ['module.service'])
     ];
   }])
 
-  .controller('CrawlCtrl', ['$scope', 'crawlrService', 'cfpLoadingBar', function($scope, crawlrService, cfpLoadingBar){
-	  
+  .controller('CrawlCtrl', ['$scope', 'crawlrService', 'cfpLoadingBar', '$routeParams', function($scope, crawlrService, cfpLoadingBar, $routeParams){
+  
 	//initiate cost slider parms
     $scope.costValue = '50';
     $scope.optionsCost = {
@@ -37,10 +37,7 @@ angular.module('module.controller', ['module.service'])
       step: 1,
       dimension: ''
     };
-	  
-    $scope.start = 'Inferno';
-
-	  
+    
     function saveRequest(requestId){
       $scope.requestId = requestId;
     }
@@ -61,7 +58,7 @@ angular.module('module.controller', ['module.service'])
       cfpLoadingBar.complete();
     }
 
-    crawlrService.getGenericRouteRequestId($scope.start)
+    crawlrService.getGenericRouteRequestId($routeParams.barId)
       .then(function(result) {
         showStatusAsBusy('Creating a Generic Bar Crawl');
         saveRequest(result);
@@ -79,7 +76,7 @@ angular.module('module.controller', ['module.service'])
      
       
 
-      crawlrService.getPreferenceRouteRequestId($scope.costValue,$scope.alcValue,$scope.disValue,$scope.start)
+      crawlrService.getPreferenceRouteRequestId($scope.costValue,$scope.alcValue,$scope.disValue,$routeParams.barId)
         .then(function(result) {
           showStatusAsBusy('Creating a Custom Bar Crawl based on your preferences.');
           saveRequest(result);
