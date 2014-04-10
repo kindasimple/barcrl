@@ -1,50 +1,5 @@
 'use strict';
 
-//.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', '$items', function ($scope, $modalInstance, items) {
-var ModalInstanceCtrl = function ($scope, $modalInstance, preferences) {
-  $scope.preferences = preferences;
-
-  //initiate cost slider parms
-  $scope.selectedCost = $scope.preferences.cost;
-  $scope.optionsCost = {
-    from: 1,
-    to: 100,
-    step: 1,
-    dimension: '  $$'
-  };
-    
-  //initiate alc slider parms
-  $scope.selectedAlcohol = $scope.preferences.alcohol;
-  $scope.optionsAlc = {
-    from: 1,
-    to: 100,
-    step: 1,
-    dimension: ''
-  };
-    
-  //initiate distance slider parms
-  $scope.selectedDistance = $scope.preferences.distance;
-  $scope.optionsDist = {
-    from: 1,
-    to: 100,
-    step: 1,
-    dimension: ''
-  };
-
-  $scope.ok = function () {
-    $modalInstance.close({
-      cost: $scope.selectedCost,
-      alcohol: $scope.selectedAlcohol,
-      distance: $scope.selectedDistance
-    });
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-};
-//}]);
-
 angular.module('module.controller', ['module.service'])
   .controller('MainCtrl', ['$scope', function ($scope) {
     $scope.bars = [
@@ -140,7 +95,7 @@ angular.module('module.controller', ['module.service'])
 
       var modalInstance = $modal.open({
         templateUrl: 'crawlPreferences.html',
-        controller: ModalInstanceCtrl,
+        controller: 'ModalInstanceCtrl',
         resolve: {
           preferences: function () {
             return $scope.preferences;
@@ -156,7 +111,52 @@ angular.module('module.controller', ['module.service'])
       });
     };
 
-  }]);
+  }])
 
+
+.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'preferences', function ($scope, $modalInstance, preferences) {
+//var ModalInstanceCtrl = function ($scope, $modalInstance, preferences) {
+  $scope.preferences = preferences;
+
+  //initiate cost slider parms
+  $scope.selectedCost = $scope.preferences.cost;
+  $scope.optionsCost = {
+    from: 1,
+    to: 100,
+    step: 1,
+    dimension: '  $$'
+  };
+    
+  //initiate alc slider parms
+  $scope.selectedAlcohol = $scope.preferences.alcohol;
+  $scope.optionsAlc = {
+    from: 1,
+    to: 100,
+    step: 1,
+    dimension: ''
+  };
+    
+  //initiate distance slider parms
+  $scope.selectedDistance = $scope.preferences.distance;
+  $scope.optionsDist = {
+    from: 1,
+    to: 100,
+    step: 1,
+    dimension: ''
+  };
+
+  $scope.ok = function () {
+    $modalInstance.close({
+      cost: $scope.selectedCost,
+      alcohol: $scope.selectedAlcohol,
+      distance: $scope.selectedDistance
+    });
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+//};
+}]);
 
 
