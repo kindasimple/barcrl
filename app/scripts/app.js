@@ -9,7 +9,8 @@ angular
     'module.service',
     'module.controller',
     'module.filter',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngSlider'
   ])
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

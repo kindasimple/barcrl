@@ -19,33 +19,15 @@
       <div class="loading">Loading..</div>
     </p>
 	
-	<select
-    ng-model="cost"
-    name="cost"
-    required="true"
-    ng-options="cost.name for cost in costs">
-    <option value="">Cost</option>
-  </select>
-  
-  <select
-    ng-model="alcohol"
-    name="alcohol"
-    required="true"
-    ng-options="alcohol.name for alcohol in alcohols">
-    <option value="">Alcohol Density</option>
-  </select>
-  
-  <select
-    ng-model="distance"
-    name="distance"
-    required="true"
-    ng-options="distance.name for distance in distances">
-    <option value="">Distance</option>
-  </select>
-
-	<p>Cost selected is {{cost.name}}</p>
-	<p>Alcohol selected is {{alcohol.name}}</p>
-	<p>Distance selected is {{distance.name}}</p>
+	
+	
+	
+	<p>Cost Rating:</p>
+	<input ng-model="costValue" type="text" id="costSlider" slider options="optionsCost" />
+	<p>Alcohol Rating:</p>
+	<input ng-model="alcValue" type="text" id="alcSlider" slider options="optionsAlc" />
+	<p>Distance Rating:</p>
+	<input ng-model="distValue" type="text" id="distSlider" slider options="optionsDist" />
 
     <accordion close-others="oneAtATime">
       <accordion-group heading="{{route.title}}" data-ng-repeat="route in routes">

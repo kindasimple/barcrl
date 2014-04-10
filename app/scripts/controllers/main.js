@@ -10,24 +10,52 @@ angular.module('module.controller', ['module.service'])
   }])
 
   .controller('CrawlCtrl', ['$scope', 'crawlrService', function($scope, crawlrService){
-    $scope.start = 'Inferno';
-	  $scope.costs = [
-	    {name:1},
-	    {name:10},
-	    {name:100}
-	  ];
 	  
-	  $scope.alcohols = [
-      {name:1},
-      {name:10},
-      {name:100}
-    ];
+	  //initiate cost slider parms
+	  $scope.costValue = "50";
+      $scope.optionsCost = {       
+        from: 1,
+        to: 100,
+        step: 1,
+        dimension: "  $$"         
+      };
+      
+      //initiate alc slider parms
+	  $scope.alcValue = "50";
+      $scope.optionsAlc = {       
+        from: 1,
+        to: 100,
+        step: 1,
+        dimension: ""         
+      };
+      
+      //initiate distance slider parms
+	  $scope.distValue = "50";
+      $scope.optionsDist = {       
+        from: 1,
+        to: 100,
+        step: 1,
+        dimension: ""         
+      };
 	  
-	  $scope.distances = [
-      {name:1},
-      {name:10},
-      {name:100}
-    ];
+	  $scope.start = 'Inferno';
+//	  $scope.costs = [
+//	    {name:1},
+//	    {name:10},
+//	    {name:100}
+//	  ];
+//	  
+//	  $scope.alcohols = [
+//      {name:1},
+//      {name:10},
+//      {name:100}
+//    ];
+	  
+//	  $scope.distances = [
+//      {name:1},
+//      {name:10},
+//      {name:100}
+//    ];
 	  
 	  function saveRequest(requestId){
       $scope.requestId = requestId;
@@ -50,10 +78,10 @@ angular.module('module.controller', ['module.service'])
       });
     
     $scope.refineTour=function(){
-      console.log('Something should happen');
-      console.log($scope.cost.name);
+     
+      
 
-      crawlrService.getPreferenceRouteRequestId($scope.cost.name,$scope.alcohol.name,$scope.distance.name,$scope.start)
+      crawlrService.getPreferenceRouteRequestId($scope.costValue,$scope.alcValue,$scope.disValue,$scope.start)
         .then(function(result) {
           saveRequest(result);
           var r = result;
