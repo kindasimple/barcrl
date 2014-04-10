@@ -10,7 +10,7 @@ angular
     'module.controller',
     'module.filter',
     'ui.bootstrap',
-    'ngSlider'
+    'ngSlider',
     'chieffancypants.loadingBar'
   ])
 
