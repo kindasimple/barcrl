@@ -22,7 +22,7 @@
             <div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars">
               <div class="bar">
                 <img src='images/bars/{{bar}}.png' class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px;"/>
-                <p>{{$index + 1}}. {{bar | ReplaceDots:" " }}</p>
+                <p>{{$index + 1}}. {{bar | ReplaceDots:" " | lowercase}}</p>
               </div>
             </div>
           </div>
