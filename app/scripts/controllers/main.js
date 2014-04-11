@@ -40,6 +40,8 @@ angular.module('module.controller', ['module.service'])
       distance: '50'
     };
 
+    $scope.queryRunning = false;
+
     function saveRequest(requestId){
       $scope.requestId = requestId;
     }
@@ -51,12 +53,14 @@ angular.module('module.controller', ['module.service'])
     function showStatusAsBusy(message) {
       message = typeof message !== 'undefined' ? message : 'Creating Bar Crawl'; //set default
       $scope.status = message;
+      $scope.queryRunning = true;
       cfpLoadingBar.start();
     }
 
     function showStatusAsReady(message) {
       message = typeof message !== 'undefined' ? message : 'Creating Bar Crawl'; //set default
       $scope.status = message;
+      $scope.queryRunning = false;
       cfpLoadingBar.complete();
     }
 
@@ -115,7 +119,6 @@ angular.module('module.controller', ['module.service'])
 
 
 .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'preferences', function ($scope, $modalInstance, preferences) {
-//var ModalInstanceCtrl = function ($scope, $modalInstance, preferences) {
   $scope.preferences = preferences;
 
   //initiate cost slider parms
@@ -156,7 +159,6 @@ angular.module('module.controller', ['module.service'])
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-//};
 }]);
 
 
