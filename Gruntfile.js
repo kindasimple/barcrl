@@ -15,8 +15,23 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  grunt.loadNpmTasks('grunt-build-gh-pages');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
+
+    cname: {
+      options: {
+        url: 'barcrl.kindasimplesolutions.com',
+        path: 'dist'        
+      }
+    },
+
+    buildGhPages: {
+      ghPages: {
+        // Leave empty if you just want to run the defaults
+      }
+    },
 
     // Project settings
     yeoman: {
@@ -419,6 +434,24 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
+
+  grunt.registerTask('cname', 'create cname record', function(){
+    grunt.log.writeln("Writing CNAME record: " + grunt.config('cname.options.url'));
+    grunt.file.write(grunt.config('cname.options.path') + '/CNAME', grunt.config('cname.options.url'));
+    grunt.log.writeln('CNAME written successfully to ' + grunt.config('cname.options.path'));
+  });
+
+  grunt.registerTask('stage', [
+        'clean',
+        'copy',
+        'cname',
+        'buildGhPages:ghPages'
+    ]);
+
+  grunt.registerTask("bumpBuild", function () {
+        var build = ".build";
+        grunt.file.write(build, parseInt(grunt.file.read(build), 10) + 1);
+    });
 
   grunt.registerTask('default', [
     'newer:jshint',
