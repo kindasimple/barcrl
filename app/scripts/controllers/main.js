@@ -42,6 +42,8 @@ angular.module('module.controller', ['module.service'])
       length: '10'
     };
 
+    $scope.queryRunning = false;
+
     function saveRequest(requestId){
       $scope.requestId = requestId;
     }
@@ -53,12 +55,14 @@ angular.module('module.controller', ['module.service'])
     function showStatusAsBusy(message) {
       message = typeof message !== 'undefined' ? message : 'Creating Bar Crawl'; //set default
       $scope.status = message;
+      $scope.queryRunning = true;
       cfpLoadingBar.start();
     }
 
     function showStatusAsReady(message) {
       message = typeof message !== 'undefined' ? message : 'Creating Bar Crawl'; //set default
       $scope.status = message;
+      $scope.queryRunning = false;
       cfpLoadingBar.complete();
     }
 
@@ -117,7 +121,6 @@ angular.module('module.controller', ['module.service'])
 
 
 .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'preferences', function ($scope, $modalInstance, preferences) {
-//var ModalInstanceCtrl = function ($scope, $modalInstance, preferences) {
   $scope.preferences = preferences;
   
   $scope.selectedLength = $scope.preferences.length;
@@ -163,6 +166,7 @@ angular.module('module.controller', ['module.service'])
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+//};
   
   $scope.numbers = [
     {name: '1'},
@@ -176,7 +180,6 @@ angular.module('module.controller', ['module.service'])
     {name: '9'},
     {name: '10'},
   ];
-//};
 }]);
   
   
