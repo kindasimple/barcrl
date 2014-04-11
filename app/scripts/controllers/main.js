@@ -30,6 +30,21 @@ angular.module('module.controller', ['module.service'])
       { id: 'Z.Bar...The.Deli', name : 'Z Bar @ The Deli' },
       { id: 'Zenos', name : 'Zenos' }
     ];
+    
+    $scope.numbers = [
+      {name: '1'},
+      {name: '2'},
+      {name: '3'},
+      {name: '4'},
+      {name: '5'},
+      {name: '6'},
+      {name: '7'},
+      {name: '8'},
+      {name: '9'},
+      {name: '10'},
+    ];
+    
+    $scope.$broadcast($scope.numbers);
   }])
 
   .controller('CrawlCtrl', ['$scope', '$modal', '$log', 'crawlrService', 'cfpLoadingBar', '$routeParams', function($scope, $modal, $log, crawlrService, cfpLoadingBar, $routeParams){
