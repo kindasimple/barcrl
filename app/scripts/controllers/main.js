@@ -42,6 +42,15 @@ angular.module('module.controller', ['module.service'])
 
     $scope.queryRunning = false;
 
+
+    $scope.map = {
+      center: {
+        latitude: 45,
+        longitude: -73
+      },
+      zoom: 8
+    };
+
     function saveRequest(requestId){
       $scope.requestId = requestId;
     }
@@ -49,6 +58,11 @@ angular.module('module.controller', ['module.service'])
     function loadRoutes(routes) {
       $scope.routes = routes;
     }
+
+    $scope.showMap = false;
+    $scope.toggleMap = function () {
+      $scope.showMap = !$scope.showMap;
+    };
 
     function showStatusAsBusy(message) {
       message = typeof message !== 'undefined' ? message : 'Creating Bar Crawl'; //set default
