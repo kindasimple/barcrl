@@ -443,7 +443,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('stage', [
         'clean',
-        'build',
+        'copy',
         'cname',
         'buildGhPages:ghPages'
     ]);
