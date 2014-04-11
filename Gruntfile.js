@@ -436,17 +436,16 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('cname', 'create cname record', function(){
-    grunt.log.writeln("Writing CNAME record: " + grunt.config('options.url'));
-    grunt.file.write(grunt.config('options.path') + '/CNAME', grunt.config('options.url'));
-    if (ifErrors) { return false; }
-    grunt.log.writeln('CNAME written successfully to ' + grunt.config('options.path'));
+    grunt.log.writeln("Writing CNAME record: " + grunt.config('cname.options.url'));
+    grunt.file.write(grunt.config('cname.options.path') + '/CNAME', grunt.config('cname.options.url'));
+    grunt.log.writeln('CNAME written successfully to ' + grunt.config('cname.options.path'));
   });
 
   grunt.registerTask('stage', [
         'clean',
         'build',
         'cname',
-        'build_gh_pages:gh_pages'
+        'buildGhPages:ghPages'
     ]);
 
   grunt.registerTask("bumpBuild", function () {
