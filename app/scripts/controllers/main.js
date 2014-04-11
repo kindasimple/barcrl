@@ -123,8 +123,20 @@ angular.module('module.controller', ['module.service'])
 .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'preferences', function ($scope, $modalInstance, preferences) {
   $scope.preferences = preferences;
   
-  $scope.selectedLength = $scope.preferences.length;
-  console.log($scope.selectedLength);
+  $scope.numbers = [
+    {name: '1'},
+    {name: '2'},
+    {name: '3'},
+    {name: '4'},
+    {name: '5'},
+    {name: '6'},
+    {name: '7'},
+    {name: '8'},
+    {name: '9'},
+    {name: '10'},
+  ];
+  $scope.selectedLength = $scope.numbers[4];
+  console.log($scope.selectedLength.name);
 
   //initiate cost slider parms
   $scope.selectedCost = $scope.preferences.cost;
@@ -153,33 +165,19 @@ angular.module('module.controller', ['module.service'])
     dimension: ''
   };
 
-  $scope.ok = function () {
+  $scope.ok = function () {   
     $modalInstance.close({
       cost: $scope.selectedCost,
       alcohol: $scope.selectedAlcohol,
       distance: $scope.selectedDistance,
-      length: $scope.selectedLength
+      length: $scope.selectedLength.name
     });
-    console.log($scope.selectedLength);
+    console.log($scope.selectedLength.name);
   };
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-//};
-  
-  $scope.numbers = [
-    {name: '1'},
-    {name: '2'},
-    {name: '3'},
-    {name: '4'},
-    {name: '5'},
-    {name: '6'},
-    {name: '7'},
-    {name: '8'},
-    {name: '9'},
-    {name: '10'},
-  ];
 }]);
   
   

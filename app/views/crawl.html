@@ -38,8 +38,6 @@
 
     </div>
   </div>
-  
-  <input ng-model="message" >
 
   <script type="text/ng-template" id="crawlPreferences.html">
       <div class="modal-header">
@@ -47,12 +45,7 @@
       </div>
       <div class="modal-body">
           <p>Tour Length</p>
-		  <select
-  		    ng-model="selectedLength"
-  		    name="length"  		      
-  		    ng-options="number.name for number in numbers">
-  		  <option value="">-- choose crawl length --</option>
-  		  </select>		  
+		  <select ng-model="selectedLength" ng-options="number.name for number in numbers"> </select>
 		  <p>Cost Rating:</p>
           <input ng-model="selectedCost" type="text" id="costSlider" slider options="optionsCost" />
           <p>Alcohol Rating:</p>
