@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('module.controller', ['module.service'])
+
   .controller('MainCtrl', ['$scope', function ($scope) {
     $scope.bars = [
       { id: 'Allen.St..Grill', name : 'Allen St. Grill' },
@@ -30,21 +31,6 @@ angular.module('module.controller', ['module.service'])
       { id: 'Z.Bar...The.Deli', name : 'Z Bar @ The Deli' },
       { id: 'Zenos', name : 'Zenos' }
     ];
-    
-    $scope.numbers = [
-      {name: '1'},
-      {name: '2'},
-      {name: '3'},
-      {name: '4'},
-      {name: '5'},
-      {name: '6'},
-      {name: '7'},
-      {name: '8'},
-      {name: '9'},
-      {name: '10'},
-    ];
-    
-    $scope.$broadcast($scope.numbers);
   }])
 
   .controller('CrawlCtrl', ['$scope', '$modal', '$log', 'crawlrService', 'cfpLoadingBar', '$routeParams', function($scope, $modal, $log, crawlrService, cfpLoadingBar, $routeParams){
@@ -52,7 +38,8 @@ angular.module('module.controller', ['module.service'])
     $scope.preferences = {
       cost: '50',
       alcohol: '50',
-      distance: '50'
+      distance: '50',
+      length: '10'
     };
 
     function saveRequest(requestId){
@@ -132,6 +119,9 @@ angular.module('module.controller', ['module.service'])
 .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'preferences', function ($scope, $modalInstance, preferences) {
 //var ModalInstanceCtrl = function ($scope, $modalInstance, preferences) {
   $scope.preferences = preferences;
+  
+  $scope.selectedLength = $scope.preferences.length;
+  console.log($scope.selectedLength);
 
   //initiate cost slider parms
   $scope.selectedCost = $scope.preferences.cost;
@@ -164,14 +154,31 @@ angular.module('module.controller', ['module.service'])
     $modalInstance.close({
       cost: $scope.selectedCost,
       alcohol: $scope.selectedAlcohol,
-      distance: $scope.selectedDistance
+      distance: $scope.selectedDistance,
+      length: $scope.selectedLength
     });
+    console.log($scope.selectedLength);
   };
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+  
+  $scope.numbers = [
+    {name: '1'},
+    {name: '2'},
+    {name: '3'},
+    {name: '4'},
+    {name: '5'},
+    {name: '6'},
+    {name: '7'},
+    {name: '8'},
+    {name: '9'},
+    {name: '10'},
+  ];
 //};
 }]);
+  
+  
 
 

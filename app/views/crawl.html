@@ -34,6 +34,8 @@
       <img src="/images/ic_launcher.png" alt="Bar Crawler Logo"><br>
     </p>
   </div>
+  
+  <input ng-model="message" >
 
   <!-- Button trigger modal -->
   <button class="btn btn-primary btn-lg" ng-click="open()">Refine Your Tour!</button>
@@ -43,7 +45,14 @@
           <h3>Refine Your Tour</h3>
       </div>
       <div class="modal-body">
-          <p>Cost Rating:</p>
+          <p>Tour Length</p>
+		  <select
+  		    ng-model="selectedLength"
+  		    name="length"  		      
+  		    ng-options="number.name for number in numbers">
+  		  <option value="">-- choose crawl length --</option>
+  		  </select>		  
+		  <p>Cost Rating:</p>
           <input ng-model="selectedCost" type="text" id="costSlider" slider options="optionsCost" />
           <p>Alcohol Rating:</p>
           <input ng-model="selectedAlcohol" type="text" id="alcSlider" slider options="optionsAlc" />
