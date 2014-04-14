@@ -448,8 +448,8 @@ module.exports = function (grunt) {
     'buildGhPages:ghPages'
   ]);
 
-  grunt.registerTask("bumpBuild", function () {
-    var build = ".build";
+  grunt.registerTask('bumpBuild', function () {
+    var build = '.build';
     grunt.file.write(build, parseInt(grunt.file.read(build), 10) + 1);
   });
 

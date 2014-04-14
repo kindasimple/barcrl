@@ -11,7 +11,8 @@ angular
     'module.filter',
     'ui.bootstrap',
     'ngSlider',
-    'chieffancypants.loadingBar'
+    'chieffancypants.loadingBar',
+    'google-maps'
   ])
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

@@ -16,26 +16,33 @@
   <div>
     <!-- Button trigger modal -->
     <button class="btn btn-primary btn-lg pull-right" ng-show="!queryRunning" class="ng-hide" ng-click="open()">Refine Your Tour!</button>
+    <button class="btn btn-primary btn-lg pull-right" ng-show="!queryRunning" ng-click="toggleMap()">Toggle</button>
     <div class="clearfix" />
     <br />
     <div>
-      <tabset justified="true">
-        <tab heading="{{route.title}}" data-ng-repeat="route in routes">
-          <div class="container-fluid">
-            <div class="row">
-              <p>{{route.title}}</p>
-              <div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars">
-                <div class="bar">
-                  <img src='images/bars/{{bar | lowercase}}.png' class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px;"/>
-                  <p>{{$index + 1}}. {{bar | ReplaceDots:" "}}</p>
+      <div ng-show="!showMap">
+        <tabset justified="true">
+          <tab heading="{{route.title}}" data-ng-repeat="route in routes">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars">
+                  <div class="bar">
+                    <img src='images/bars/{{bar | lowercase}}.png' class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px;"/>
+                    <p>{{$index + 1}}. {{bar | ReplaceDots:" "}}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </tab>
-      </tabset>
+          </tab>
+        </tabset>
+      </div>
+      <!-- end bar tours //-->
 
-
+      <!-- Google Map //-->
+      <style>
+        .angular-google-map-container { height: 400px;}
+      </style>
+      <google-map center="map.center" zoom="map.zoom"></google-map>
     </div>
   </div>
   
