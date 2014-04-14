@@ -44,13 +44,17 @@ angular.module('module.controller', ['module.service'])
 
     $scope.queryRunning = false;
 
-
     $scope.map = {
       center: {
-        latitude: 45,
-        longitude: -73
+        latitude: 40.7948,
+        longitude: -77.8590
       },
-      zoom: 8
+      zoom: 13,
+      marker: {
+        latitude: 40.7948,
+        longitude: -77.8590
+      },
+      icon: '//maps.gstatic.com/mapfiles/markers2/marker.png'
     };
 
     function saveRequest(requestId){

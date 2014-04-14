@@ -16,7 +16,7 @@
   <div>
     <!-- Button trigger modal -->
     <button class="btn btn-primary btn-lg pull-right" ng-show="!queryRunning" class="ng-hide" ng-click="open()">Refine Your Tour!</button>
-    <button class="btn btn-primary btn-lg pull-right" ng-show="!queryRunning" ng-click="toggleMap()">Toggle</button>
+    <button class="btn btn-primary btn-lg pull-right" style="margin-right: 12px" ng-show="!queryRunning" ng-click="toggleMap()">Toggle</button>
     <div class="clearfix" />
     <br />
     <div>
@@ -42,7 +42,10 @@
       <style>
         .angular-google-map-container { height: 400px;}
       </style>
-      <google-map center="map.center" zoom="map.zoom"></google-map>
+      <google-map center="map.center" zoom="map.zoom">
+        <marker coords="map.marker" icon="map.icon">
+        </marker>
+      </google-map>
     </div>
   </div>
   
