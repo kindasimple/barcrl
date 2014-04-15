@@ -16,6 +16,7 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   grunt.loadNpmTasks('grunt-build-gh-pages');
+  grunt.loadNpmTasks('grunt-build-control');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -24,6 +25,27 @@ module.exports = function (grunt) {
       options: {
         url: 'barcrl.kindasimplesolutions.com',
         path: 'dist'
+      }
+    },
+
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      pages: {
+        options: {
+          remote: 'git@github.com:kindasimple/barcrl.git',
+          branch: 'gh-pages'
+        }
+      },
+      local: {
+        options: {
+          remote: '../',
+          branch: 'build'
+        }
       }
     },
 
