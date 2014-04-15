@@ -27,13 +27,24 @@ module.exports = function (grunt) {
       }
     },
 
+    gitignore: {
+      options: {
+        path: 'dist',
+        ignore: ['.sass-cache/*', 'node_modules/*', '.tmp/*']
+      }
+    },
+
     buildGhPages: {
       ghPages: {
-        dist: "dist",
-        build_branch: "gh-pages",
-        pull: false,
-        exclude: [],
-        copy_hidden: false
+        options: {
+          dist: "dist",
+          build_branch: "gh-pages",
+          pull: false,
+          exclude: ['.sass-cache/*', 'node_modules/*', '.tmp/*'],
+          copy_hidden: true,
+          ignore: ['.sass-cache/*', 'node_modules/*', '.tmp/*'],
+          cname: 'barcrl.kindasimplesolutions.com'
+        }
       }
     },
 
@@ -445,10 +456,26 @@ module.exports = function (grunt) {
     grunt.log.writeln('CNAME written successfully to ' + grunt.config('cname.options.path'));
   });
 
+  grunt.registerTask('gitignore', 'create gitignore record', function(){
+    var path = grunt.config('gitignore.options.path')
+    var ignore = grunt.config('gitignore.options.ignore');
+    grunt.log.writeln('Writing gitignore record: ' + ignore);
+    if(ignore != undefined) {
+      var content = '';
+      for(var key in ignore) {
+        content = content + ignore[key] + '\n';
+        grunt.log.writeln('added ' + ignore[key]);
+      }
+      grunt.file.write(path + '/.gitignore', content);
+      grunt.log.writeln('gitignore written successfully to ' + path);
+    }
+  });
+
   grunt.registerTask('stage', [
     'clean',
     'copy',
     'cname',
+    'gitignore',
     'buildGhPages:ghPages'
   ]);
 
