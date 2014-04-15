@@ -24,12 +24,11 @@ module.exports = function(config) {
       'app/bower_components/jquery/dist/jquery.js',
       'app/bower_components/ng-slider/src/ng-slider.js',
       'app/bower_components/angular-loading-bar/src/loading-bar.js',
-      //Google Maps
-      'app/bower_components/underscore/underscore.js',
-
       'app/scripts/*.js',
       'app/scripts/**/*.js',
-            'app/bower_components/angular-google-maps/dist/angular-google-maps.js',
+      //Google Maps
+      'app/bower_components/underscore/underscore.js',
+      'app/bower_components/angular-google-maps/dist/angular-google-maps.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
 

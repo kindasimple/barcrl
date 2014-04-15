@@ -29,7 +29,11 @@ module.exports = function (grunt) {
 
     buildGhPages: {
       ghPages: {
-        // Leave empty if you just want to run the defaults
+        dist: "dist",
+        build_branch: "gh-pages",
+        pull: false,
+        exclude: [],
+        copy_hidden: false
       }
     },
 
