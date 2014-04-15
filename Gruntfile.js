@@ -15,7 +15,6 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  grunt.loadNpmTasks('grunt-build-gh-pages');
   grunt.loadNpmTasks('grunt-build-control');
 
   // Define the configuration for all the tasks
@@ -53,20 +52,6 @@ module.exports = function (grunt) {
       options: {
         path: 'dist',
         ignore: ['.sass-cache/*', 'node_modules/*', '.tmp/*']
-      }
-    },
-
-    buildGhPages: {
-      ghPages: {
-        options: {
-          dist: "dist",
-          build_branch: "gh-pages",
-          pull: false,
-          exclude: ['.sass-cache/*', 'node_modules/*', '.tmp/*'],
-          copy_hidden: true,
-          ignore: ['.sass-cache/*', 'node_modules/*', '.tmp/*'],
-          cname: 'barcrl.kindasimplesolutions.com'
-        }
       }
     },
 
@@ -497,8 +482,7 @@ module.exports = function (grunt) {
     'clean',
     'copy',
     'cname',
-    'gitignore',
-    'buildGhPages:ghPages'
+    'buildcontrol:pages'
   ]);
 
   grunt.registerTask('bumpBuild', function () {
