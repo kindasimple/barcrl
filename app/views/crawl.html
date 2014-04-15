@@ -54,10 +54,8 @@
           <h3>Refine Your Tour</h3>
       </div>
       <div class="modal-body">
-        	How many bars would you like to tour?
-        	<select data-ng-model="engineer.currentActivity"
-                data-ng-options="act for act in activities">                
-        	</select>    	  
+          <p>Tour Length:</p>
+          <input ng-model="selectedLength" type="text" id="lengthSlider" slider options="optionsLength" />    	  
 		  <p>Cost Rating:</p>
           <input ng-model="selectedCost" type="text" id="costSlider" slider options="optionsCost" />
           <p>Alcohol Rating:</p>

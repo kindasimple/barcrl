@@ -141,6 +141,14 @@ angular.module('module.controller', ['module.service'])
 .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'preferences', function ($scope, $modalInstance, preferences) {
   $scope.preferences = preferences; 
  
+//initiate length slider parms
+  $scope.selectedLength = $scope.preferences.length;
+  $scope.optionsLength = {
+    from: 1,
+    to: 20,
+    step: 1,
+    dimension: ''
+  };
   
   //initiate cost slider parms
   $scope.selectedCost = $scope.preferences.cost;
@@ -167,29 +175,8 @@ angular.module('module.controller', ['module.service'])
     to: 100,
     step: 1,
     dimension: ''
-  };
-  
-  $scope.engineer = {
-      name: 'Dani',
-      currentActivity: '1'
-  };
-
-  $scope.activities =
-  [
-      '1',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10'
-  ];
-  
-  console.log($scope.engineer.currentActivity);
-
+  };  
+ 
   $scope.ok = function () {
     $modalInstance.close({
       cost: $scope.selectedCost,
@@ -197,7 +184,7 @@ angular.module('module.controller', ['module.service'])
       distance: $scope.selectedDistance,
       length: $scope.selectedLength
     });
-    console.log($scope.engineer.currentActivity);
+    console.log($scope.selectedLength);   
   };
 
   $scope.cancel = function () {
