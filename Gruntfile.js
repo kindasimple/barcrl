@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         dir: 'dist',
         commit: true,
         push: true,
-        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch% --skip-ci'
       },
       pages: {
         options: {
@@ -479,8 +479,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('stage', [
-    'clean',
-    'copy',
+    'build',
     'cname',
     'buildcontrol:pages'
   ]);
