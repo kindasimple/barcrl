@@ -79,6 +79,21 @@ angular.module('module.controller', ['module.service'])
       },
       zoom: 13,
       markers: [],
+      polyline: {
+        visible: true,
+        fill: { color: '#FF0000', opacity: 1.0},
+        stroke: { color: '#FF0000', weight: 10, opacity: 1.0},
+        path: [{
+            latitude: 0.0,
+            longitude: 0.0
+          },
+          {
+            latitude: 0.0,
+            longitude: 0.001
+          }
+        ]
+      },
+
       icon: '//maps.gstatic.com/mapfiles/markers2/marker.png'
     };
 
@@ -93,21 +108,24 @@ angular.module('module.controller', ['module.service'])
     function loadRoutes(routes) {
       $scope.routes = routes;
       $scope.map.markers = getMarkersFromRoutes(routes);
+      $scope.map.polyline.path = $scope.map.markers;
     }
 
     function getMarkersFromRoutes (routes) {
       var markers = [];
       var route = routes[0];
       var thisScope = $scope;
+      var position = 0;
       route.bars.forEach(function(bar){
+        position = position + 1;
         for(var barData in thisScope.bars) {
-          if(thisScope.bars[barData].id == bar) {
-            var data = thisScope.bars[barData]
-            markers.push({ name: data.name, latitude: data.lat, longitude: data.lon});
+          if(thisScope.bars[barData].id === bar) {
+            var data = thisScope.bars[barData];
+            markers.push({ position: position, id: data.id, name: data.name, latitude: data.lat, longitude: data.lon});
             break;
           }
         }
-      })
+      });
       return markers;
     }
 

@@ -27,6 +27,7 @@ module.exports = function(config) {
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       //Google Maps
+      'http://maps.googleapis.com/maps/api/js?sensor=false',
       'app/bower_components/underscore/underscore.js',
       'app/bower_components/angular-google-maps/dist/angular-google-maps.js',
       'test/mock/**/*.js',
