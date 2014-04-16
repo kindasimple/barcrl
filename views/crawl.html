@@ -1,56 +1,4 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">crawlr</h3>
-</div>
-
-<div ng-controller="CrawlCtrl">
-
-  <div>
-    <p class="bg-primary" data-ng-bind="status" style="padding: 12px;"/>
-  </div>
-
-  <div>
-    <!-- Button trigger modal -->
-    <button class="btn btn-primary btn-lg pull-right" ng-show="!queryRunning" class="ng-hide" ng-click="open()">Refine Your Tour!</button>
-    <button class="btn btn-primary btn-lg pull-right" style="margin-right: 12px" ng-show="!queryRunning" ng-click="toggleMap()">Toggle</button>
-    <div class="clearfix" />
-    <br />
-    <div>
-      <div ng-show="!showMap">
-        <tabset justified="true">
-          <tab heading="{{route.title}}" data-ng-repeat="route in routes">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars">
-                  <div class="bar">
-                    <img src='images/bars/{{bar | lowercase}}.png' class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px;"/>
-                    <p>{{$index + 1}}. {{bar | ReplaceDots:" "}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </tab>
-        </tabset>
-      </div>
-      <!-- end bar tours //-->
-
-      <!-- Google Map //-->
-      <style>
-        .angular-google-map-container { height: 400px;}
-      </style>
-      <google-map center="map.center" zoom="map.zoom">
-        <marker coords="map.marker" icon="map.icon">
-        </marker>
-      </google-map>
-    </div>
-  </div>  
-
-  <script type="text/ng-template" id="crawlPreferences.html">
-      <div class="modal-header">
+<div class="header"><ul class="nav nav-pills pull-right"><li class="active"><a ng-href="#">Home</a></li><li><a ng-href="#">About</a></li><li><a ng-href="#">Contact</a></li></ul><h3 class="text-muted">crawlr</h3></div><div ng-controller="CrawlCtrl"><div><p class="bg-primary" data-ng-bind="status" style="padding: 12px"></div><div><!-- Button trigger modal --><button class="btn btn-primary btn-lg pull-right" ng-show="!queryRunning" class="ng-hide" ng-click="open()">Refine Your Tour!</button> <button class="btn btn-primary btn-lg pull-right" style="margin-right: 12px" ng-show="!queryRunning" ng-click="toggleMap()">Toggle</button><div class="clearfix"><br><div><div ng-show="!showMap"><tabset justified="true"><tab heading="{{route.title}}" data-ng-repeat="route in routes"><div class="container-fluid"><div class="row"><div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars"><div class="bar"><img src="images/bars/{{bar | lowercase}}.png" class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px"><p>{{$index + 1}}. {{bar | ReplaceDots:" "}}</p></div></div></div></div></tab></tabset></div><!-- end bar tours //--><!-- Google Map //--><style>.angular-google-map-container { height: 400px;}</style><google-map center="map.center" zoom="map.zoom"><marker coords="map.marker" icon="map.icon"></marker></google-map></div></div><script type="text/ng-template" id="crawlPreferences.html"><div class="modal-header">
           <h3>Refine Your Tour</h3>
       </div>
       <div class="modal-body">
@@ -66,11 +14,4 @@
       <div class="modal-footer">
           <button class="btn btn-primary" ng-click="ok()">OK</button>
           <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-      </div>
-  </script>
-</div>
-
-
-<div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> Made With Love</p>
-</div>
+      </div></script></div><div class="footer"><p><span class="glyphicon glyphicon-heart"></span> Made With Love</p></div>
