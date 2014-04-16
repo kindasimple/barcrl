@@ -18,8 +18,8 @@
       <!-- Button trigger modal -->
       <button class="btn btn-primary btn-lg pull-right" ng-show="!queryRunning" class="ng-hide" ng-click="open()">Refine Your Tour!</button>
       <button class="btn btn-primary btn-lg pull-right" style="margin-right: 12px" ng-show="!queryRunning" ng-click="showTour=!showTour"><span ng-hide="!showTour">Show</span><span ng-hide="showTour">Hide</span> Tour</button>
+      <div class="clearfix" />
     </div>
-    <div class="clearfix" />
     <br />
     <div>
       <div ng-hide="showTour">
@@ -45,8 +45,9 @@
         .angular-google-map-container { height: 400px;}
       </style>
       <google-map center="map.center" zoom="map.zoom">
-        <marker coords="map.marker" icon="map.icon">
-        </marker>
+        <markers fit="true">
+          <marker ng-repeat="marker in map.markers" coords="marker"></marker>
+        </markers>
       </google-map>
     </div>
   </div>  
