@@ -464,10 +464,10 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('gitignore', 'create gitignore record', function(){
-    var path = grunt.config('gitignore.options.path')
+    var path = grunt.config('gitignore.options.path');
     var ignore = grunt.config('gitignore.options.ignore');
     grunt.log.writeln('Writing gitignore record: ' + ignore);
-    if(ignore != undefined) {
+    if(ignore !== undefined) {
       var content = '';
       for(var key in ignore) {
         content = content + ignore[key] + '\n';
