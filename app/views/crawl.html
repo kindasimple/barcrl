@@ -32,12 +32,12 @@
     <div>
       <!-- Button trigger modal -->
       <button class="btn btn-primary btn-lg pull-right" style="margin-bottom: 6px" ng-show="!queryRunning" class="ng-hide" ng-click="open()">Refine Your Tour!</button>
-      <button class="btn btn-primary btn-lg pull-right" style="margin-right: 12px" ng-show="!queryRunning" ng-click="showTour=!showTour"><span ng-hide="!showTour">Show</span><span ng-hide="showTour">Hide</span> Tour</button>
+      <button class="btn btn-primary btn-lg pull-right" style="margin-right: 12px" ng-show="!queryRunning" ng-click="showTour=!showTour"><span ng-hide="showTour">Show</span><span ng-hide="!showTour">Hide</span> Alternatives</button>
       <div class="clearfix" />
     </div>
     <br />
     <div>
-      <div ng-hide="showTour">
+      <div ng-show="showTour">
         <tabset justified="true">
           <tab heading="{{route.title}}" data-ng-repeat="route in routes" select="displayMarkers()">
             <div class="container-fluid">
@@ -74,11 +74,32 @@
           stroke="map.polyline.stroke">
         </polyline>
       </google-map>
-      <ul>
-        <li ng-repeat="marker in map.markers" ng-mouseover="marker.showWindow = true" ng-mouseleave="marker.showWindow = false" ng-mousedown="marker.showWindow = true" ng-mouseup="marker.showWindow = false">
-          <p>{{marker.position}}. {{marker.name}}</p>
-        </li>
-      </ul>
+
+      <h3>Tour Details</h3>
+
+      <div class="row">
+        <div id="tour-list" class="col-xs-6 col-sm-3 col-md-3">
+          
+          <ol>
+            <li ng-repeat="marker in map.markers" ng-mouseover="marker.showWindow = true" ng-mouseleave="marker.showWindow = false" ng-mousedown="marker.showWindow = true;showDetail(marker)" ng-mouseup="marker.showWindow = false">
+              <p>{{marker.name}}</p>
+            </li>
+          </ol>
+        </div>
+        <div id="tour-item-detail" class="col-xs-6 col-sm-9 col-md-9">
+          <h4>{{barDetail.bar.name}}</h4>
+          <div class="row">
+            <div id="tour-item-detail-info" class="col-xs-offset-1 col-xs-11 col-sm-offset-1 col-sm-3 col-md-offset-1 col-md-3">
+              <p>12 College Ave</p>
+              <p>Hours: 9-5</p>
+              <p>Specials: </p>
+            </div>
+            <div id="tour-item-detail-pic" class="col-xs-offset-1 col-xs-11 col-sm-7 col-md-7">
+              <img src='images/bars/{{barDetail.bar.id | lowercase}}.png' />
+            </div> 
+        </div>
+      </div>
+
     </div>
   </div>  
 

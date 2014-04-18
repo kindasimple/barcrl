@@ -102,6 +102,10 @@ angular.module('module.controller', ['module.service'])
       icon: '//maps.gstatic.com/mapfiles/markers2/marker.png'
     };
 
+    $scope.barDetail = {
+      isVisible: false
+    };
+
     $scope.displayMarkers = function (route) {
       console.log(route);
     };
@@ -160,7 +164,22 @@ angular.module('module.controller', ['module.service'])
       $scope.map.markers.push( getMarkerFromBar(1, bar) );
     }
 
+    function getFirstBarDetails(){
+      $scope.barDetail.bar = {};
+      var bar = getBarByBarId($routeParams.barId);
+      $scope.barDetail.bar = bar;
+      $scope.barDetail.visible = true;
+    }
+
+    $scope.showDetail = function (marker) {
+      $scope.barDetail.bar = getBarByBarId(marker.id);
+      $scope.visible = true;
+    };
+
+    //do init
     getFirstMarker();
+    getFirstBarDetails();
+    //end init
 
     crawlrService.getGenericRouteRequestId($routeParams.barId)
       .then(function(result) {
