@@ -2,7 +2,7 @@
 
 angular.module('module.controller', ['module.service'])
 
-  .controller('MainCtrl', ['$scope', function ($scope) {
+  .controller('MainCtrl', ['$scope', '$location', function ($scope, $location) {
     $scope.bars = [
       { id: 'Allen.St..Grill', name : 'Allen St. Grill', lat:'40.794302', lon:'-77.861613' },
       { id: 'Bar.Bleu', name : 'Bar Bleu', lat:'40.79773', lon:'-77.856613' },
@@ -31,6 +31,11 @@ angular.module('module.controller', ['module.service'])
       { id: 'Z.Bar...The.Deli', name : 'Z Bar @ The Deli', lat:'40.797133', lon:'-77.857179' },
       { id: 'Zenos', name : 'Zenos', lat:'40.79432', lon:'-77.861621' }
     ];
+
+    $scope.goRandom = function () {
+      var index = Math.floor((Math.random()*100)) % 26;
+      $location.path( '/Crawl/' + $scope.bars[index].id );
+    };
   }])
 
   .controller('CrawlCtrl', ['$scope', '$modal', '$log', 'crawlrService', 'cfpLoadingBar', '$routeParams', function($scope, $modal, $log, crawlrService, cfpLoadingBar, $routeParams){
@@ -83,7 +88,8 @@ angular.module('module.controller', ['module.service'])
         visible: true,
         fill: { color: '#FF0000', opacity: 1.0},
         stroke: { color: '#FF0000', weight: 10, opacity: 1.0},
-        path: [{
+        path: [
+          {
             latitude: 0.0,
             longitude: 0.0
           },
@@ -93,7 +99,6 @@ angular.module('module.controller', ['module.service'])
           }
         ]
       },
-
       icon: '//maps.gstatic.com/mapfiles/markers2/marker.png'
     };
 
@@ -114,19 +119,25 @@ angular.module('module.controller', ['module.service'])
     function getMarkersFromRoutes (routes) {
       var markers = [];
       var route = routes[0];
-      var thisScope = $scope;
       var position = 0;
-      route.bars.forEach(function(bar){
+      route.bars.forEach(function(barId){
         position = position + 1;
-        for(var barData in thisScope.bars) {
-          if(thisScope.bars[barData].id === bar) {
-            var data = thisScope.bars[barData];
-            markers.push({ position: position, id: data.id, name: data.name, latitude: data.lat, longitude: data.lon});
-            break;
-          }
-        }
+        var bar = getBarByBarId(barId);
+        markers.push( getMarkerFromBar(position, bar) );
       });
       return markers;
+    }
+
+    function getMarkerFromBar (position, bar) {
+      return { position: position, id: bar.id, name: bar.name, latitude: bar.lat, longitude: bar.lon };
+    }
+
+    function getBarByBarId(barId) {
+      for(var barData in $scope.bars) {
+        if($scope.bars[barData].id === barId) {
+          return $scope.bars[barData];
+        }
+      }
     }
 
     function showStatusAsBusy(message) {
@@ -142,6 +153,14 @@ angular.module('module.controller', ['module.service'])
       $scope.queryRunning = false;
       cfpLoadingBar.complete();
     }
+
+    function getFirstMarker(){
+      $scope.map.markers = [];
+      var bar = getBarByBarId($routeParams.barId);
+      $scope.map.markers.push( getMarkerFromBar(1, bar) );
+    }
+
+    getFirstMarker();
 
     crawlrService.getGenericRouteRequestId($routeParams.barId)
       .then(function(result) {
