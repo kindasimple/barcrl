@@ -11,16 +11,28 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      //angular stuff
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js',
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
+      //3rd party
+      'app/bower_components/angular-ui/build/angular-ui.js',
+      'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'app/bower_components/jquery/dist/jquery.js',
+      'app/bower_components/ng-slider/src/ng-slider.js',
+      'app/bower_components/angular-loading-bar/src/loading-bar.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
+      //Google Maps
+      'http://maps.googleapis.com/maps/api/js?sensor=false',
+      'app/bower_components/underscore/underscore.js',
+      'app/bower_components/angular-google-maps/dist/angular-google-maps.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
+
     ],
 
     // list of files / patterns to exclude

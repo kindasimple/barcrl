@@ -1,22 +1,37 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">barcrl</h3>
-</div>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">crawlr</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a ng-href="#">Home</a></li>
+        <li><a ng-href="#">About</a></li>
+        <li><a ng-href="#">Contact</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <div class="jumbotron" ng-control="MainCtrl">
   <h1>BarCrl</h1>
   <p class="lead">
-    <img src="/images/ic_launcher.png" alt="BarCrl Logo"><br>
-    A highly optimized bar crawl generator.
+    <img src="images/ic_launcher.png" alt="BarCrl Logo"><br>
+    A highly optimized bar crawl generator
   </p>
-  Start your crawl at 
+
   <div class="btn-group">
-    <a href="/Crawl/Inferno" >Start at Inferno</a>
-    <button type="button" class="btn btn-default">Random</button>
+    
+    <button type="button" class="btn btn-default" ng-click="goRandom()">Random</button>
 
     <div class="btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -24,21 +39,12 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li ng-repeat="bar in bars" ng-model="bar.name" />
+        <li ng-repeat="bar in bars"> 
+        <a href="#/Crawl/{{bar.id}}">{{bar.name}}</a>
+        </li>
       </ul>
     </div>
-  </div>
-
-  <select
-    ng-model="bar"
-    name="start"
-    required="true"
-    ng-options="bar.name for bar in bars">
-    <option value="">-- choose bar --</option>
-  </select>
-
-  <br/><br/>
-  <p><a class="btn btn-lg btn-success" ng-href ng-click="createTour()">Create a Tour! <span class="glyphicon glyphicon-ok"></span></a></p>
+  </div>	
 </div>
 
 <div class="row marketing" >
@@ -57,5 +63,5 @@
 </div>
 
 <div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+  <p><span class="glyphicon glyphicon-heart"></span> from the Crawlr team</p>
 </div>
