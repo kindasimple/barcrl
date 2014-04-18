@@ -81,7 +81,7 @@
         <div id="tour-list" class="col-xs-6 col-sm-3 col-md-3">
           
           <ol>
-            <li ng-repeat="marker in map.markers" ng-mouseover="marker.showWindow = true" ng-mouseleave="marker.showWindow = false" ng-mousedown="marker.showWindow = true;showDetail(marker)" ng-mouseup="marker.showWindow = false">
+            <li ng-repeat="marker in map.markers" ng-mouseover="marker.showWindow = true;showDetail(marker)" ng-mouseleave="marker.showWindow = false" ng-mousedown="marker.showWindow = true;showDetail(marker)" ng-mouseup="showDetail(marker)">
               <p>{{marker.name}}</p>
             </li>
           </ol>
