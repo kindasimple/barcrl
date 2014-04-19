@@ -38,7 +38,7 @@ angular.module('module.controller', ['module.service'])
     };
   }])
 
-  .controller('CrawlCtrl', ['$scope', '$modal', '$log', 'crawlrService', 'cfpLoadingBar', '$routeParams', function($scope, $modal, $log, crawlrService, cfpLoadingBar, $routeParams){
+  .controller('CrawlCtrl', ['$scope', '$modal', '$log', '$location', 'crawlrService', 'cfpLoadingBar', '$routeParams', function($scope, $modal, $log, $location, crawlrService, cfpLoadingBar, $routeParams){
     $scope.bars = [
       { id: 'Allen.St..Grill', name : 'Allen St. Grill', lat:'40.794302', lon:'-77.861613' },
       { id: 'Bar.Bleu', name : 'Bar Bleu', lat:'40.79773', lon:'-77.856613' },
@@ -103,11 +103,16 @@ angular.module('module.controller', ['module.service'])
     };
 
     $scope.barDetail = {
-      isVisible: false
+      isVisible: false,
+      setBar: function (bar) {
+        this.bar = bar;
+        var base_url = location.protocol + "//" + location.hostname + ':' + $location.port() +  location.pathname;
+        this.image = base_url + 'images/bars/' + bar.id.toLowerCase() + '.png';
+      }
     };
 
     $scope.displayMarkers = function (route) {
-      console.log(route);
+      //$log.debug(route);
     };
 
     function saveRequest(requestId){
@@ -167,12 +172,12 @@ angular.module('module.controller', ['module.service'])
     function getFirstBarDetails(){
       $scope.barDetail.bar = {};
       var bar = getBarByBarId($routeParams.barId);
-      $scope.barDetail.bar = bar;
+      $scope.barDetail.setBar(bar);
       $scope.barDetail.visible = true;
     }
 
     $scope.showDetail = function (marker) {
-      $scope.barDetail.bar = getBarByBarId(marker.id);
+      $scope.barDetail.setBar( getBarByBarId(marker.id) );
       $scope.visible = true;
     };
 

@@ -13,10 +13,10 @@
     "angular-route": "1.2.15",
     "angular-loading-bar": "~0.3.0",
     "angular-ui": "~0.4.0",
-    "ng-slider": "*",
     "angular-bootstrap": "~0.10.0",
     "angular-google-maps": "~1.0.18",
-    "jquery-ui": "~1.10.4"
+    "jquery-ui": "~1.10.4",
+    "ng-slider": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",
