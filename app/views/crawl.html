@@ -44,7 +44,7 @@
               <div class="row">
                 <div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars">
                   <div class="bar">
-                    <img src='images/bars/{{bar | lowercase}}.png' class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px;"/>
+                    <img ng-src='images/bars/{{bar | lowercase}}.png' class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px;"/>
                     <p>{{$index + 1}}. {{bar | ReplaceDots:" "}}</p>
                   </div>
                 </div>
@@ -63,7 +63,7 @@
         <markers models="map.markers" coords="'self'" labelContent="'name'" fit="'true'">
             <windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
                 <div class="bar" ng-non-bindable>
-                  <img src='images/bars/{{id | lowercase}}.png' style="margin-right: 8px; margin-bottom: 8px; height: 80px;" ng-non-bindable/>
+                  <img ng-src='images/bars/{{id | lowercase}}.png' style="margin-right: 8px; margin-bottom: 8px; height: 80px;" ng-non-bindable/>
                   <p ng-non-bindable>{{position}}. {{name}}</p>
                 </div>
             </windows>
@@ -95,7 +95,7 @@
               <p>Specials: </p>
             </div>
             <div id="tour-item-detail-pic" class="col-xs-offset-1 col-xs-11 col-sm-7 col-md-7">
-              <img src='images/bars/{{barDetail.bar.id | lowercase}}.png' />
+              <img ng-src='images/bars/{{barDetail.bar.id | lowercase}}.png' />
             </div> 
         </div>
       </div>
