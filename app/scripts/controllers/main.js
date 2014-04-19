@@ -2,39 +2,72 @@
 
 angular.module('module.controller', ['module.service'])
 
-  .controller('MainCtrl', ['$scope', function ($scope) {
+  .controller('MainCtrl', ['$scope', '$location', function ($scope, $location) {
     $scope.bars = [
-      { id: 'Allen.St..Grill', name : 'Allen St. Grill', lat:'40.794302', long:'-77.861613' },
-      { id: 'Bar.Bleu', name : 'Bar Bleu', lat:'40.79773', long:'-77.856613' },
-      { id: 'The.Brewery', name : 'The Brewery', lat:'40.794952', long:'-77.858437' },
-      { id: 'Cafe.210', name : 'Cafe 210', lat:'40.793246', long:'-77.862986' },
-      { id: 'Chilis', name : 'Chilis', lat:'40.793864', long:'-77.860543' },
-      { id: 'Chrome', name : 'Chrome', lat:'40.791849', long:'-77.862299' },
-      { id: 'Chumleys', name : 'Chumley\'s', lat:'40.794188', long:'-77.861763' },
-      { id: 'Darkhorse.Tavern', name : 'Darkhorse Tavern', lat:'40.79466', long:'-77.860218' },
-      { id: 'Gingerbread.Man', name : 'Gingerbread Man', lat:'40.796706', long:'-77.856849' },
-      { id: 'Indigo', name : 'Indigo', lat:'40.794123', long:'-77.861806' },
-      { id: 'Inferno', name : 'Inferno', lat:'40.797535', long:'-77.857321' },
-      { id: 'Kildares', name : 'Kildares', lat:'40.800109', long:'-77.85379' },
-      { id: 'Levels', name : 'Levels', lat:'40.798233', long:'-77.85627' },
-      { id: 'Lions.Den', name : 'Lion\'s Den', lat:'40.797523', long:'-77.856519' },
-      { id: 'Local.Whiskey', name : 'Local Whiskey', lat:'40.793683', long:'-77.860092' },
-      { id: 'Mad.Mex', name : 'Mad Mex', lat:'40.793872', long:'-77.85852' },
-      { id: 'The.Phyrst', name : 'The Phyrst', lat:'40.793683', long:'-77.860092' },
-      { id: 'Bill.Pickles.Tap.Room', name : 'Bill Pickles Tap Room', lat:'40.794156', long:'-77.861386' },
-      { id: 'The.Rathskeller', name : 'The Rathskeller', lat:'40.795151', long:'-77.860357' },
-      { id: 'Rotellis', name : 'Rotellis', lat:'40.795699', long:'-77.858772' },
-      { id: 'Rumors.Lounge', name : 'Rumors Lounge', lat:'40.791536', long:'-77.864552' },
-      { id: 'The.Saloon', name : 'The Saloon', lat:'40.797315', long:'-77.857395' },
-      { id: 'The.Shandygaff', name : 'The Shandygaff', lat:'40.795301', long:'-77.859534' },
-      { id: 'The.Tavern.Restaurant', name : 'The Tavern Restaurant', lat:'40.795677', long:'-77.859783' },
-      { id: 'Z.Bar...The.Deli', name : 'Z Bar @ The Deli', lat:'40.797133', long:'-77.857179' },
-      { id: 'Zenos', name : 'Zenos', lat:'40.79432', long:'-77.861621' }
+      { id: 'Allen.St..Grill', name : 'Allen St. Grill', lat:'40.794302', lon:'-77.861613' },
+      { id: 'Bar.Bleu', name : 'Bar Bleu', lat:'40.79773', lon:'-77.856613' },
+      { id: 'The.Brewery', name : 'The Brewery', lat:'40.794952', lon:'-77.858437' },
+      { id: 'Cafe.210', name : 'Cafe 210', lat:'40.793246', lon:'-77.862986' },
+      { id: 'Chilis', name : 'Chilis', lat:'40.793864', lon:'-77.860543' },
+      { id: 'Chrome', name : 'Chrome', lat:'40.791849', lon:'-77.862299' },
+      { id: 'Chumleys', name : 'Chumley\'s', lat:'40.794188', lon:'-77.861763' },
+      { id: 'Darkhorse.Tavern', name : 'Darkhorse Tavern', lat:'40.79466', lon:'-77.860218' },
+      { id: 'Gingerbread.Man', name : 'Gingerbread Man', lat:'40.796706', lon:'-77.856849' },
+      { id: 'Indigo', name : 'Indigo', lat:'40.794123', lon:'-77.861806' },
+      { id: 'Inferno', name : 'Inferno', lat:'40.797535', lon:'-77.857321' },
+      { id: 'Kildares', name : 'Kildares', lat:'40.800109', lon:'-77.85379' },
+      { id: 'Levels', name : 'Levels', lat:'40.798233', lon:'-77.85627' },
+      { id: 'Lions.Den', name : 'Lion\'s Den', lat:'40.797523', lon:'-77.856519' },
+      { id: 'Local.Whiskey', name : 'Local Whiskey', lat:'40.793683', lon:'-77.860092' },
+      { id: 'Mad.Mex', name : 'Mad Mex', lat:'40.793872', lon:'-77.85852' },
+      { id: 'The.Phyrst', name : 'The Phyrst', lat:'40.793683', lon:'-77.860092' },
+      { id: 'Bill.Pickles.Tap.Room', name : 'Bill Pickles Tap Room', lat:'40.794156', lon:'-77.861386' },
+      { id: 'The.Rathskeller', name : 'The Rathskeller', lat:'40.795151', lon:'-77.860357' },
+      { id: 'Rotellis', name : 'Rotellis', lat:'40.795699', lon:'-77.858772' },
+      { id: 'Rumors.Lounge', name : 'Rumors Lounge', lat:'40.791536', lon:'-77.864552' },
+      { id: 'The.Saloon', name : 'The Saloon', lat:'40.797315', lon:'-77.857395' },
+      { id: 'The.Shandygaff', name : 'The Shandygaff', lat:'40.795301', lon:'-77.859534' },
+      { id: 'The.Tavern.Restaurant', name : 'The Tavern Restaurant', lat:'40.795677', lon:'-77.859783' },
+      { id: 'Z.Bar...The.Deli', name : 'Z Bar @ The Deli', lat:'40.797133', lon:'-77.857179' },
+      { id: 'Zenos', name : 'Zenos', lat:'40.79432', lon:'-77.861621' }
     ];
+
+    $scope.goRandom = function () {
+      var index = Math.floor((Math.random()*100)) % 26;
+      $location.path( '/Crawl/' + $scope.bars[index].id );
+    };
   }])
 
   .controller('CrawlCtrl', ['$scope', '$modal', '$log', 'crawlrService', 'cfpLoadingBar', '$routeParams', function($scope, $modal, $log, crawlrService, cfpLoadingBar, $routeParams){
-    
+    $scope.bars = [
+      { id: 'Allen.St..Grill', name : 'Allen St. Grill', lat:'40.794302', lon:'-77.861613' },
+      { id: 'Bar.Bleu', name : 'Bar Bleu', lat:'40.79773', lon:'-77.856613' },
+      { id: 'The.Brewery', name : 'The Brewery', lat:'40.794952', lon:'-77.858437' },
+      { id: 'Cafe.210', name : 'Cafe 210', lat:'40.793246', lon:'-77.862986' },
+      { id: 'Chilis', name : 'Chilis', lat:'40.793864', lon:'-77.860543' },
+      { id: 'Chrome', name : 'Chrome', lat:'40.791849', lon:'-77.862299' },
+      { id: 'Chumleys', name : 'Chumley\'s', lat:'40.794188', lon:'-77.861763' },
+      { id: 'Darkhorse.Tavern', name : 'Darkhorse Tavern', lat:'40.79466', lon:'-77.860218' },
+      { id: 'Gingerbread.Man', name : 'Gingerbread Man', lat:'40.796706', lon:'-77.856849' },
+      { id: 'Indigo', name : 'Indigo', lat:'40.794123', lon:'-77.861806' },
+      { id: 'Inferno', name : 'Inferno', lat:'40.797535', lon:'-77.857321' },
+      { id: 'Kildares', name : 'Kildares', lat:'40.800109', lon:'-77.85379' },
+      { id: 'Levels', name : 'Levels', lat:'40.798233', lon:'-77.85627' },
+      { id: 'Lions.Den', name : 'Lion\'s Den', lat:'40.797523', lon:'-77.856519' },
+      { id: 'Local.Whiskey', name : 'Local Whiskey', lat:'40.793683', lon:'-77.860092' },
+      { id: 'Mad.Mex', name : 'Mad Mex', lat:'40.793872', lon:'-77.85852' },
+      { id: 'The.Phyrst', name : 'The Phyrst', lat:'40.793683', lon:'-77.860092' },
+      { id: 'Bill.Pickles.Tap.Room', name : 'Bill Pickles Tap Room', lat:'40.794156', lon:'-77.861386' },
+      { id: 'The.Rathskeller', name : 'The Rathskeller', lat:'40.795151', lon:'-77.860357' },
+      { id: 'Rotellis', name : 'Rotellis', lat:'40.795699', lon:'-77.858772' },
+      { id: 'Rumors.Lounge', name : 'Rumors Lounge', lat:'40.791536', lon:'-77.864552' },
+      { id: 'The.Saloon', name : 'The Saloon', lat:'40.797315', lon:'-77.857395' },
+      { id: 'The.Shandygaff', name : 'The Shandygaff', lat:'40.795301', lon:'-77.859534' },
+      { id: 'The.Tavern.Restaurant', name : 'The Tavern Restaurant', lat:'40.795677', lon:'-77.859783' },
+      { id: 'Z.Bar...The.Deli', name : 'Z Bar @ The Deli', lat:'40.797133', lon:'-77.857179' },
+      { id: 'Zenos', name : 'Zenos', lat:'40.79432', lon:'-77.861621' }
+    ];
+
     $scope.preferences = {
       cost: '50',
       alcohol: '50',
@@ -50,11 +83,31 @@ angular.module('module.controller', ['module.service'])
         longitude: -77.8590
       },
       zoom: 13,
-      marker: {
-        latitude: 40.7948,
-        longitude: -77.8590
+      markers: [],
+      polyline: {
+        visible: true,
+        fill: { color: '#FF0000', opacity: 1.0},
+        stroke: { color: '#FF0000', weight: 10, opacity: 1.0},
+        path: [
+          {
+            latitude: 0.0,
+            longitude: 0.0
+          },
+          {
+            latitude: 0.0,
+            longitude: 0.001
+          }
+        ]
       },
       icon: '//maps.gstatic.com/mapfiles/markers2/marker.png'
+    };
+
+    $scope.barDetail = {
+      isVisible: false
+    };
+
+    $scope.displayMarkers = function (route) {
+      console.log(route);
     };
 
     function saveRequest(requestId){
@@ -63,12 +116,33 @@ angular.module('module.controller', ['module.service'])
 
     function loadRoutes(routes) {
       $scope.routes = routes;
+      $scope.map.markers = getMarkersFromRoutes(routes);
+      $scope.map.polyline.path = $scope.map.markers;
     }
 
-    $scope.showMap = false;
-    $scope.toggleMap = function () {
-      $scope.showMap = !$scope.showMap;
-    };
+    function getMarkersFromRoutes (routes) {
+      var markers = [];
+      var route = routes[0];
+      var position = 0;
+      route.bars.forEach(function(barId){
+        position = position + 1;
+        var bar = getBarByBarId(barId);
+        markers.push( getMarkerFromBar(position, bar) );
+      });
+      return markers;
+    }
+
+    function getMarkerFromBar (position, bar) {
+      return { position: position, id: bar.id, name: bar.name, latitude: bar.lat, longitude: bar.lon };
+    }
+
+    function getBarByBarId(barId) {
+      for(var barData in $scope.bars) {
+        if($scope.bars[barData].id === barId) {
+          return $scope.bars[barData];
+        }
+      }
+    }
 
     function showStatusAsBusy(message) {
       message = typeof message !== 'undefined' ? message : 'Creating Bar Crawl'; //set default
@@ -83,6 +157,29 @@ angular.module('module.controller', ['module.service'])
       $scope.queryRunning = false;
       cfpLoadingBar.complete();
     }
+
+    function getFirstMarker(){
+      $scope.map.markers = [];
+      var bar = getBarByBarId($routeParams.barId);
+      $scope.map.markers.push( getMarkerFromBar(1, bar) );
+    }
+
+    function getFirstBarDetails(){
+      $scope.barDetail.bar = {};
+      var bar = getBarByBarId($routeParams.barId);
+      $scope.barDetail.bar = bar;
+      $scope.barDetail.visible = true;
+    }
+
+    $scope.showDetail = function (marker) {
+      $scope.barDetail.bar = getBarByBarId(marker.id);
+      $scope.visible = true;
+    };
+
+    //do init
+    getFirstMarker();
+    getFirstBarDetails();
+    //end init
 
     crawlrService.getGenericRouteRequestId($routeParams.barId)
       .then(function(result) {
@@ -139,7 +236,7 @@ angular.module('module.controller', ['module.service'])
 
 
 .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'preferences', function ($scope, $modalInstance, preferences) {
-  $scope.preferences = preferences; 
+  $scope.preferences = preferences;
  
 //initiate length slider parms
   $scope.selectedLength = $scope.preferences.length;
@@ -175,7 +272,7 @@ angular.module('module.controller', ['module.service'])
     to: 100,
     step: 1,
     dimension: ''
-  };  
+  };
  
   $scope.ok = function () {
     $modalInstance.close({
@@ -184,7 +281,7 @@ angular.module('module.controller', ['module.service'])
       distance: $scope.selectedDistance,
       length: $scope.selectedLength
     });
-    console.log($scope.selectedLength);   
+    console.log($scope.selectedLength);
   };
 
   $scope.cancel = function () {

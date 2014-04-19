@@ -15,7 +15,7 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  grunt.loadNpmTasks('grunt-build-gh-pages');
+  grunt.loadNpmTasks('grunt-build-control');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -27,13 +27,31 @@ module.exports = function (grunt) {
       }
     },
 
-    buildGhPages: {
-      ghPages: {
-        dist: "dist",
-        build_branch: "gh-pages",
-        pull: false,
-        exclude: [],
-        copy_hidden: false
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch% --skip-ci'
+      },
+      pages: {
+        options: {
+          remote: 'git@github.com:kindasimple/barcrl.git',
+          branch: 'gh-pages'
+        }
+      },
+      local: {
+        options: {
+          remote: '../',
+          branch: 'build'
+        }
+      }
+    },
+
+    gitignore: {
+      options: {
+        path: 'dist',
+        ignore: ['.sass-cache/*', 'node_modules/*', '.tmp/*']
       }
     },
 
@@ -445,11 +463,25 @@ module.exports = function (grunt) {
     grunt.log.writeln('CNAME written successfully to ' + grunt.config('cname.options.path'));
   });
 
+  grunt.registerTask('gitignore', 'create gitignore record', function(){
+    var path = grunt.config('gitignore.options.path');
+    var ignore = grunt.config('gitignore.options.ignore');
+    grunt.log.writeln('Writing gitignore record: ' + ignore);
+    if(ignore !== undefined) {
+      var content = '';
+      for(var key in ignore) {
+        content = content + ignore[key] + '\n';
+        grunt.log.writeln('added ' + ignore[key]);
+      }
+      grunt.file.write(path + '/.gitignore', content);
+      grunt.log.writeln('gitignore written successfully to ' + path);
+    }
+  });
+
   grunt.registerTask('stage', [
-    'clean',
-    'copy',
+    'build',
     'cname',
-    'buildGhPages:ghPages'
+    'buildcontrol:pages'
   ]);
 
   grunt.registerTask('bumpBuild', function () {
