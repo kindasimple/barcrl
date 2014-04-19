@@ -42,7 +42,7 @@
           <tab heading="{{route.title}}" data-ng-repeat="route in routes" select="displayMarkers()">
             <div class="container-fluid">
               <div class="row">
-                <div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars" ui-sortable>
+                <div class="event col-xs-11 col-sm-6 col-md-6" data-ng-repeat="bar in route.bars">
                   <div class="bar">
                     <img src='images/bars/{{bar | lowercase}}.png' class="pull-left" style="margin-right: 8px; margin-bottom: 8px; height: 80px;"/>
                     <p>{{$index + 1}}. {{bar | ReplaceDots:" "}}</p>
@@ -76,15 +76,15 @@
       </google-map>
 
       <h3>Tour Details</h3>
-
       <div class="row">
         <div id="tour-list" class="col-xs-6 col-sm-3 col-md-3">
-          
-          <ol>
+
+          <ol ui-sortable ng-model="map.markers">
             <li ng-repeat="marker in map.markers" ng-mouseover="marker.showWindow = true;showDetail(marker)" ng-mouseleave="marker.showWindow = false" ng-mousedown="marker.showWindow = true;showDetail(marker)" ng-mouseup="showDetail(marker)">
               <p>{{marker.name}}</p>
             </li>
           </ol>
+          
         </div>
         <div id="tour-item-detail" class="col-xs-6 col-sm-9 col-md-9">
           <h4>{{barDetail.bar.name}}</h4>

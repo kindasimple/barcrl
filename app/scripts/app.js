@@ -12,7 +12,8 @@ angular
     'ui.bootstrap',
     'ngSlider',
     'chieffancypants.loadingBar',
-    'google-maps'
+    'google-maps',
+    'ui.sortable'
   ])
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
