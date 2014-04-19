@@ -100,7 +100,7 @@ angular.module('module.controller', ['module.service'])
     
     $scope.refineTour=function(){
 
-      crawlrService.getPreferenceRouteRequestId($scope.preferences.cost,$scope.preferences.alcohol,$scope.preferences.distance,$routeParams.barId)
+      crawlrService.getPreferenceRouteRequestId($scope.preferences.cost,$scope.preferences.alcohol,$scope.preferences.distance,$routeParams.barId,$scope.preferences.length)
         .then(function(result) {
           showStatusAsBusy('Creating a Custom Bar Crawl based on your preferences.');
           saveRequest(result);

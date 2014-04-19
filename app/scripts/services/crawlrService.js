@@ -32,13 +32,13 @@ serviceModule.service('crawlrService', ['$http', '$q', function($http, $q){
       });
       return deferred.promise;
     },
-    getPreferenceRouteRequestId: function (cost,alc,distance,start) {
+    getPreferenceRouteRequestId: function (cost,alc,distance,start, length) {
         var deferred = $q.defer();
         
         $http({
           method: 'POST',
           url: 'http://crawlrapi.herokuapp.com/route/'+ start,
-          data: 'cost=' + cost + '&alcohol=' + alc + '&distance=' + distance,
+          data: 'cost=' + cost + '&alcohol=' + alc + '&distance=' + distance +'&length' + length,
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         })
         .success(function(result) {
