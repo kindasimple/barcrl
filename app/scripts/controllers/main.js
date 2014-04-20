@@ -106,8 +106,8 @@ angular.module('module.controller', ['module.service'])
       isVisible: false,
       setBar: function (bar) {
         this.bar = bar;
-        var base_url = location.protocol + "//" + location.hostname + ':' + $location.port() +  location.pathname;
-        this.image = base_url + 'images/bars/' + bar.id.toLowerCase() + '.png';
+        var baseUrl = location.protocol + '//' + location.hostname + ':' + $location.port() +  location.pathname;
+        this.image = baseUrl + 'images/bars/' + bar.id.toLowerCase() + '.png';
       }
     };
 
