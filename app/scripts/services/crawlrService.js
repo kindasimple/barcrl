@@ -1,7 +1,7 @@
 'use strict';
-var serviceModule = angular.module('module.service', []);
+angular.module('module.service', [])
 
-serviceModule.service('crawlrService', ['$http', '$q', function($http, $q){
+.factory('crawlrService', ['$http', '$q', function($http, $q){
   return {
     getGenericRouteRequestId: function (start) {
       var deferred = $q.defer();

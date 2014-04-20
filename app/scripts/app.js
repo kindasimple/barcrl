@@ -8,7 +8,6 @@ angular
     'ngRoute',
     'module.service',
     'module.controller',
-    'module.controller.recent',
     'module.filter',
     'ui.bootstrap',
     'ngSlider',

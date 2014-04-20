@@ -1,18 +1,28 @@
 'use strict';
 
-angular.module('module.controller.recent', [])
+angular.module('module.controller')
+
   .controller('RecentCtrl', ['$scope', 'recent', function ($scope, recent) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.recent = [];//[{guid: 'sdfasdfdsfsdf', permalink: 'http://kindasimple.com'}];
+
+    $scope.history = [
+      {
+        timestamp: '4-14-14  2:20',
+        guid: 'sdfasdfdsfsdf',
+        permalink: 'http://kindasimple.com'
+      }
+    ];
 
     function setup () {
-	    $scope.$watch('recent', function (oldvalue, newValue) {
-	        if (oldValue !== newValue) recent.add;
-	    });
+      $scope.$watch('history', function (oldValue, newValue) {
+        if (oldValue !== newValue) {
+          //recent.add;
+        }
+      });
     }
 
     setup();
