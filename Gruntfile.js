@@ -279,7 +279,6 @@ module.exports = function (grunt) {
           src: [
             '{,*/}*.{png,jpg,jpeg,gif}',
             '../bower_components/ng-slider/dist/img/*.{png,jpg,jpeg,gif,webp,svg,eot,ttf,woff}',
-            '../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*.{png,jpg,jpeg,gif,webp,svg,eot,ttf,woff}'
           ],
           dest: '<%= yeoman.dist %>/images'
         }]
@@ -357,12 +356,12 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
         }
-        // , {
-        //   expand: true,
-        //   cwd: '<%= yeoman.app %>/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
-        //   dest: '<%= yeoman.dist %>/styles/fonts/bootstrap',
-        //   src: '*.*'
-        // }
+        , {
+          expand: true,
+          cwd: '<%= yeoman.app %>/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
+          dest: '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
+          src: '*.*'
+        }
         ]
       },
       styles: {
