@@ -2,7 +2,7 @@
 
 angular.module('module.controller')
 
-.controller('CrawlCtrl', ['$scope', '$modal', '$log', '$location', 'crawlrService', 'barService', 'cfpLoadingBar', '$routeParams', function($scope, $modal, $log, $location, crawlrService, barService, cfpLoadingBar, $routeParams){
+.controller('CrawlCtrl', ['$scope', '$modal', '$log', '$location', 'crawlrService', 'barService', 'historyService', 'cfpLoadingBar', '$routeParams', function($scope, $modal, $log, $location, crawlrService, barService, historyService, cfpLoadingBar, $routeParams){
   $scope.bars = barService.getBars();
 
   $scope.specials = barService.getSpecials();
@@ -121,9 +121,9 @@ angular.module('module.controller')
     $scope.map.markers.push( getMarkerFromBar(1, bar) );
   }
 
-  function getFirstBarDetails(){
+  function getFirstBarDetails(barId){
     $scope.barDetail.bar = {};
-    var bar = getBarByBarId($routeParams.barId);
+    var bar = getBarByBarId(barId);
     $scope.barDetail.setBar(bar);
     $scope.barDetail.visible = true;
   }
@@ -133,36 +133,18 @@ angular.module('module.controller')
     $scope.visible = true;
   };
 
-  //do init
-  getFirstMarker();
-  getFirstBarDetails();
-  //end init
-
-  crawlrService.getGenericRouteRequestId($routeParams.barId)
-    .then(function(result) {
-      showStatusAsBusy('Creating a Generic Bar Crawl');
-      saveRequest(result);
-      var r = result;
-      setTimeout( function () {
-        crawlrService.getResult(r)
-        .then(function(result){
-          loadRoutes(result);
-          showStatusAsReady('We found you a tour! You can refine it if you\'d like.');
-        });
-      }, 7000);
-    });
-
   $scope.refineTour=function(){
 
-    crawlrService.getPreferenceRouteRequestId($scope.preferences.cost,$scope.preferences.alcohol,$scope.preferences.distance,$routeParams.barId)
-      .then(function(result) {
+    crawlrService.getPreferenceRouteRequestId($scope.preferences.cost,$scope.preferences.alcohol,$scope.preferences.distance,$scope.preferences.startingBarId)
+      .then(function(requestId) {
         showStatusAsBusy('Creating a Custom Bar Crawl based on your preferences.');
-        saveRequest(result);
-        var r = result;
+        saveRequest(requestId);
+        var r = requestId;
         setTimeout( function () {
           crawlrService.getResult(r)
-          .then(function(result){
-            loadRoutes(result);
+          .then(function(routes){
+            loadRoutes(routes);
+            historyService.addResult(r, routes);
             showStatusAsReady('We created a custom tour for you!');
           });
         }, 7000);
@@ -182,13 +164,64 @@ angular.module('module.controller')
     });
 
     modalInstance.result.then(function (preferences) {
-      $scope.preferences = preferences;
+      $scope.preferences.cost = preferences.cost;
+      $scope.preferences.alcohol = preferences.alcohol;
+      $scope.preferences.distance = preferences.distance;
+      $scope.preferences.length = preferences.length;
       $scope.refineTour();
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
 
+  function pollRouteAPI(requestId, messageOnComplete, callback){
+    crawlrService.getResult(requestId)
+      .then(function (routes) {
+        routeResultCallback(requestId, routes, messageOnComplete, callback);
+      });
+  }
+
+  function routeResultCallback (requestId, routes, message, callback) {
+    loadRoutes(routes);
+
+    //$scope.$apply();
+    showStatusAsReady(message);
+    if(callback) {
+     callback(requestId, routes);     
+   }
+  }
+
+  function init(){
+    if($routeParams.requestId){
+      $scope.requestId = $routeParams.requestId;
+      pollRouteAPI($routeParams.requestId, 'Here is your saved tour!', function(requestId, routes) { 
+        var startingBarId = routes[0].bars[0];
+        getFirstBarDetails(startingBarId); 
+        $scope.preferences.startingBarId = startingBarId;
+      });
+      
+    } else {
+      //do init
+      var startingBarId = $routeParams.barId;
+      $scope.preferences.startingBarId = startingBarId
+      getFirstMarker();
+      getFirstBarDetails(startingBarId);
+
+      crawlrService.getGenericRouteRequestId(startingBarId)
+        .then(function(requestId) {
+          showStatusAsBusy('Creating a Generic Bar Crawl');
+          saveRequest(requestId);
+          var r = requestId;
+          setTimeout( function () {
+            pollRouteAPI(r, 'We found you a tour! You can refine it if you\'d like.', function(requestId, routes) { 
+              historyService.addResult(requestId, routes, 'from ' + getBarByBarId(routes[0].bars[0]).name + ' at ' + new Date().getTime());
+            });
+          }, 7000);
+        });
+    }
+  }
+
+  init();
 }])
 
 

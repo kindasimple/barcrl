@@ -73,6 +73,7 @@
           stroke="map.polyline.stroke">
         </polyline>
       </google-map>
+      <a href="#/history/{{requestId}}">Permalink</a>
 
       <h3>Tour Details</h3>
       <div class="row">
@@ -126,10 +127,10 @@
   </script>
 </div>
 
-  <div ng-controller="RecentCtrl">
+  <div ng-controller="HistoryCtrl">
     <h2>Recent Crawls</h2>
     <ul>
-      <li ng-repeat="query in history"><a href="{{query.permalink}}">{{query.timestamp}}</a></li>
+      <li ng-repeat="query in history | filter:query | limitTo:10"><a href="#/history/{{query.guid}}">{{query.name}}</a></li>
     </ul>
   </div>
 

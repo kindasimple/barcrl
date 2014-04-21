@@ -27,10 +27,10 @@ angular
         controller: 'MainCtrl'
       })
 
-      // .when('/recent', {
-      //   templateUrl: 'views/recent.html',
-      //   controller: 'RecentCtrl'
-      // })
+      .when('/history/:requestId', {
+        templateUrl: 'views/crawl.html',
+        controller: 'CrawlCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
@@ -41,15 +41,4 @@ angular
 
     // configure html5 to allow make up for lack of url rewriting on gh-pages
     $locationProvider.html5Mode(false);
-  }])
-
-  .factory('recent', ['$cookies', function ($cookies) {
-    return {
-      addRecent: function (guid) {
-        $cookies.recent.push(guid);
-      },
-      getRecent: function () {
-        return $cookies.recent || {};
-      }
-    };
   }]);
