@@ -19,17 +19,23 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       //3rd party
+      'app/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
       'app/bower_components/angular-ui/build/angular-ui.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'app/bower_components/jquery/dist/jquery.js',
+      'app/bower_components/jquery-ui/ui/jquery-ui.js',
       'app/bower_components/ng-slider/src/ng-slider.js',
       'app/bower_components/angular-loading-bar/src/loading-bar.js',
-      'app/scripts/*.js',
-      'app/scripts/**/*.js',
       //Google Maps
       'http://maps.googleapis.com/maps/api/js?sensor=false',
       'app/bower_components/underscore/underscore.js',
       'app/bower_components/angular-google-maps/dist/angular-google-maps.js',
+      //project files
+      'app/scripts/app.js',
+      'app/scripts/services/crawlrService.js',
+      'app/scripts/controllers/main.js',
+      'app/scripts/**/*.js',
+      //testing files
       'test/mock/**/*.js',
       'test/spec/**/*.js'
 

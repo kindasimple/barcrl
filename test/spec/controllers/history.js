@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: RecentCtrl', function () {
+describe('Controller: HistoryCtrl', function () {
 
   // load the controller's module
   beforeEach(module('barcrlApp'));
 
-  var RecentCtrl,
+  var HistoryCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    RecentCtrl = $controller('RecentCtrl', {
+    HistoryCtrl = $controller('HistoryCtrl', {
       $scope: scope
     });
   }));
