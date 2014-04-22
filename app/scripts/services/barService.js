@@ -142,7 +142,7 @@ angular.module('module.service')
         { id: 'The.Phyrst', days: 'S', times: 'Allday', description: '$3 Pinnacle Drinks' },
         { id: 'The.Phyrst', days: 'FS', times: '7pm-9pm', description: '1/2 Price Everything' },
         { id: 'The.Phyrst', days: 'Sun', times: 'Allday', description: '$2 Blue Moon Drafts' },
-        { id: 'Bill.Pickles.Tap.Room', days: 'M-Sun', times: 'Allday', description: '$2 Miller Lite & Yuengling Lager Drafts, $3 Iced T's' },
+        { id: 'Bill.Pickles.Tap.Room', days: 'M-Sun', times: 'Allday', description: '$2 Miller Lite & Yuengling Lager Drafts, $3 Iced T\'s' },
         { id: 'Bill.Pickles.Tap.Room', days: 'MSun', times: '10pm-11pm', description: '1/2 Off Well Liquor & House Chard & Cab' },
         { id: 'Bill.Pickles.Tap.Room', days: 'T-Sat', times: '10pm-12am', description: '1/2 Off Well Liquor & House Chard & Cab' },
         { id: 'Bill.Pickles.Tap.Room', days: 'M', times: 'Allday', description: '$3 Dos Equis Drafts, $9 Dos Equis Pitchers' },

@@ -187,23 +187,23 @@ angular.module('module.controller')
     //$scope.$apply();
     showStatusAsReady(message);
     if(callback) {
-     callback(requestId, routes);     
-   }
+      callback(requestId, routes);
+    }
   }
 
   function init(){
     if($routeParams.requestId){
       $scope.requestId = $routeParams.requestId;
-      pollRouteAPI($routeParams.requestId, 'Here is your saved tour!', function(requestId, routes) { 
+      pollRouteAPI($routeParams.requestId, 'Here is your saved tour!', function(requestId, routes) {
         var startingBarId = routes[0].bars[0];
-        getFirstBarDetails(startingBarId); 
+        getFirstBarDetails(startingBarId);
         $scope.preferences.startingBarId = startingBarId;
       });
       
     } else {
       //do init
       var startingBarId = $routeParams.barId;
-      $scope.preferences.startingBarId = startingBarId
+      $scope.preferences.startingBarId = startingBarId;
       getFirstMarker();
       getFirstBarDetails(startingBarId);
 
@@ -213,7 +213,7 @@ angular.module('module.controller')
           saveRequest(requestId);
           var r = requestId;
           setTimeout( function () {
-            pollRouteAPI(r, 'We found you a tour! You can refine it if you\'d like.', function(requestId, routes) { 
+            pollRouteAPI(r, 'We found you a tour! You can refine it if you\'d like.', function(requestId, routes) {
               historyService.addResult(requestId, routes, 'from ' + getBarByBarId(routes[0].bars[0]).name + ' at ' + new Date().getTime());
             });
           }, 7000);
