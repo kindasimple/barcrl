@@ -99,21 +99,27 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
-    <script src="bower_components/ng-slider/src/ng-slider.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="bower_components/ng-slider/src/ng-slider.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-
-    <script src="bower_components/angular-ui/build/angular-ui.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap-collapse.min.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/directives/sortable.js"></script>
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <!-- Services -->
         <script src="scripts/services/crawlrService.js"></script>
+        <script src="scripts/services/barService.js"></script>
+        <script src="scripts/services/historyService.js"></script>
         <script src="scripts/filters/filters.js"></script>
+        <!-- Controllers -->
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/history.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/crawl.js"></script>
         <!-- endbuild -->
         
 </body>

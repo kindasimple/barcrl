@@ -12,7 +12,8 @@ angular
     'ui.bootstrap',
     'ngSlider',
     'chieffancypants.loadingBar',
-    'google-maps'
+    'google-maps',
+    'ui.sortable'
   ])
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
@@ -26,6 +27,14 @@ angular
         controller: 'MainCtrl'
       })
 
+      .when('/history/:requestId', {
+        templateUrl: 'views/crawl.html',
+        controller: 'CrawlCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

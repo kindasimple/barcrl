@@ -228,8 +228,9 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
+            //'<%= yeoman.app %>/bower_components/ng-slider/dist/img/*.{png,jpg,jpeg,gif,webp,svg,eot,ttf,woff}'
             //'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/styles/fonts/*'
+            //'<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
       }
@@ -275,7 +276,10 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: [
+            '{,*/}*.{png,jpg,jpeg,gif}',
+            '../bower_components/ng-slider/dist/img/*.{png,jpg,jpeg,gif,webp,svg,eot,ttf,woff}',
+          ],
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -351,7 +355,13 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        }]
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
+          dest: '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
+          src: '*.*'
+        }
+        ]
       },
       styles: {
         expand: true,
@@ -360,6 +370,8 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       }
     },
+
+
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {

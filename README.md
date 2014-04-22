@@ -8,8 +8,8 @@ A public website for creating Optimized Pub Crawls.
 
 ## Dependencies
 
-- Ruby
-- Compass
+- [Ruby](https://www.ruby-lang.org/en/installation/)
+- [Compass](http://compass-style.org/install/)
 
 ## Installation
 
@@ -28,6 +28,8 @@ gem install compass
 Use grunt to serve the application
 
 ```
+# will serve from http://localhost:9000
+# and open site in a new browser
 grunt serve
 ```
 
@@ -51,17 +53,11 @@ Public releases are available at the custom domain [barcrl.com](http://barcrl.co
 *note*: The subdomain address is necessary. Though the site can be reached via the subfolder (http://kindasimple.github.io/barcrl), our site does not support this scenario with angular routing.
 
 
-**description**: The application is staged on a Github Project page. A deployment can be accomplished easily on the CLI 
+**instructions**: The application is staged on a Github Project page. A deployment can be accomplished easily on the CLI with grunt
 
 ```
 ## build with grunt to /dist folder
-grunt build
-
-## restore CNAME file
-git checkout dist/CNAME
-
-## deploy to gh-pages branch
-git subtree push --prefix dist origin gh-pages
+grunt stage
 ```
 
 #### production
@@ -71,3 +67,6 @@ git subtree push --prefix dist origin gh-pages
 
 * Custom Domain: [barcrl.com](http://barcrl.com)  
 * Amazon Subdomain: [barcrl.com.s3-website-us-east-1.amazonaws.com](http://barcrl.com.s3-website-us-east-1.amazonaws.com/index.html)
+
+**instructions**: log in through AWS and copy files to the S3 bucket "barcrl.com"
+
