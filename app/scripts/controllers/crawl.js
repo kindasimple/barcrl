@@ -214,7 +214,7 @@ angular.module('module.controller')
           var r = requestId;
           setTimeout( function () {
             pollRouteAPI(r, 'We found you a tour! You can refine it if you\'d like.', function(requestId, routes) {
-              historyService.addResult(requestId, routes, 'from ' + getBarByBarId(routes[0].bars[0]).name + ' at ' + new Date().getTime());
+              historyService.addResult(requestId, routes, $scope.preferences);
             });
           }, 7000);
         });

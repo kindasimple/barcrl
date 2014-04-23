@@ -26,6 +26,8 @@ module.exports = function(config) {
       'app/bower_components/jquery-ui/ui/jquery-ui.js',
       'app/bower_components/ng-slider/src/ng-slider.js',
       'app/bower_components/angular-loading-bar/src/loading-bar.js',
+      'app/bower_components/angular-moment/angular-moment.js',
+      'app/bower_components/moment/moment.js',
       //Google Maps
       'http://maps.googleapis.com/maps/api/js?sensor=false',
       'app/bower_components/underscore/underscore.js',

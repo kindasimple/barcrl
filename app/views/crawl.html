@@ -130,7 +130,7 @@
   <div ng-controller="HistoryCtrl">
     <h2>Recent Crawls</h2>
     <ul>
-      <li ng-repeat="query in history | filter:query | limitTo:10"><a href="#/history/{{query.guid}}">{{query.name}}</a></li>
+      <li ng-repeat="query in history | filter:query | limitTo:10"><a href="#/history/{{query.guid}}">{{query.name}} <span am-time-ago="query.timestamp"></span></a></li>
     </ul>
   </div>
 
