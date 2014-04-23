@@ -9,11 +9,11 @@ angular.module('module.service')
         if(!history) {
           history = [];
         }
-        while(history.length > 50) {
+        while(history.length > 12) {
           history.pop();
         }
         var bar = barService.getBarByBarId(preferences.startingBarId);
-        history.push({ guid: guid, timestamp: new Date(), name: 'from ' + bar.name});
+        history.unshift({ guid: guid, timestamp: new Date(), name: 'from ' + bar.name, preferences: preferences});
         $cookieStore.put('history', history);
       },
       getRecent: function () {
