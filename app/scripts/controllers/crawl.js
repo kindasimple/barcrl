@@ -266,12 +266,12 @@ angular.module('module.controller')
  
   $scope.ok = function () {
     $modalInstance.close({
-      cost: $scope.selectedCost,
-      alcohol: $scope.selectedAlcohol,
-      distance: $scope.selectedDistance,
-      length: $scope.selectedLength
+      cost: this.selectedCost,
+      alcohol: this.selectedAlcohol,
+      distance: this.selectedDistance,
+      length: this.selectedLength
     });
-    console.log($scope.selectedLength);
+    console.log(this.selectedLength);
   };
 
   $scope.cancel = function () {
