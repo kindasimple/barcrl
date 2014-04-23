@@ -9,7 +9,7 @@ angular.module('module.service')
         if(!history) {
           history = [];
         }
-        while(history.length > 12) {
+        while(history.length > 10) {
           history.pop();
         }
         var bar = barService.getBarByBarId(preferences.startingBarId);
