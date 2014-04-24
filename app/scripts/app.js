@@ -13,7 +13,8 @@ angular
     'ngSlider',
     'chieffancypants.loadingBar',
     'google-maps',
-    'ui.sortable'
+    'ui.sortable',
+    'angularMoment'
   ])
 
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

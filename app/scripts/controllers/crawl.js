@@ -75,6 +75,8 @@ angular.module('module.controller')
     $scope.routes = routes;
     $scope.map.markers = getMarkersFromRoutes(routes);
     $scope.map.polyline.path = $scope.map.markers;
+    var startingBarId = routes[0].bars[0];
+    $scope.preferences.startingBarId = startingBarId;
   }
 
   function getMarkersFromRoutes (routes) {
@@ -83,7 +85,7 @@ angular.module('module.controller')
     var position = 0;
     route.bars.forEach(function(barId){
       position = position + 1;
-      var bar = getBarByBarId(barId);
+      var bar = barService.getBarByBarId(barId);
       markers.push( getMarkerFromBar(position, bar) );
     });
     return markers;
@@ -91,14 +93,6 @@ angular.module('module.controller')
 
   function getMarkerFromBar (position, bar) {
     return { position: position, id: bar.id, name: bar.name, latitude: bar.lat, longitude: bar.lon };
-  }
-
-  function getBarByBarId(barId) {
-    for(var barData in $scope.bars) {
-      if($scope.bars[barData].id === barId) {
-        return $scope.bars[barData];
-      }
-    }
   }
 
   function showStatusAsBusy(message) {
@@ -117,19 +111,19 @@ angular.module('module.controller')
 
   function getFirstMarker(){
     $scope.map.markers = [];
-    var bar = getBarByBarId($routeParams.barId);
+    var bar = barService.getBarByBarId($routeParams.barId);
     $scope.map.markers.push( getMarkerFromBar(1, bar) );
   }
 
   function getFirstBarDetails(barId){
     $scope.barDetail.bar = {};
-    var bar = getBarByBarId(barId);
+    var bar = barService.getBarByBarId(barId);
     $scope.barDetail.setBar(bar);
     $scope.barDetail.visible = true;
   }
 
   $scope.showDetail = function (marker) {
-    $scope.barDetail.setBar( getBarByBarId(marker.id) );
+    $scope.barDetail.setBar( barService.getBarByBarId(marker.id) );
     $scope.visible = true;
   };
 
@@ -144,7 +138,7 @@ angular.module('module.controller')
           crawlrService.getResult(r)
           .then(function(routes){
             loadRoutes(routes);
-            historyService.addResult(r, routes);
+            historyService.addResult(r, routes, $scope.preferences);
             showStatusAsReady('We created a custom tour for you!');
           });
         }, 7000);
@@ -155,7 +149,7 @@ angular.module('module.controller')
 
     var modalInstance = $modal.open({
       templateUrl: 'crawlPreferences.html',
-      controller: 'ModalInstanceCtrl',
+      controller: 'PreferencesCtrl',
       resolve: {
         preferences: function () {
           return $scope.preferences;
@@ -191,13 +185,16 @@ angular.module('module.controller')
     }
   }
 
+  $scope.viewRecent = function (query) {
+    $scope.preferences = query.preferences;
+    $scope.refineTour();
+  }
+
   function init(){
     if($routeParams.requestId){
       $scope.requestId = $routeParams.requestId;
       pollRouteAPI($routeParams.requestId, 'Here is your saved tour!', function(requestId, routes) {
-        var startingBarId = routes[0].bars[0];
         getFirstBarDetails(startingBarId);
-        $scope.preferences.startingBarId = startingBarId;
       });
       
     } else {
@@ -214,7 +211,7 @@ angular.module('module.controller')
           var r = requestId;
           setTimeout( function () {
             pollRouteAPI(r, 'We found you a tour! You can refine it if you\'d like.', function(requestId, routes) {
-              historyService.addResult(requestId, routes, 'from ' + getBarByBarId(routes[0].bars[0]).name + ' at ' + new Date().getTime());
+              historyService.addResult(requestId, routes, $scope.preferences);
             });
           }, 7000);
         });
@@ -222,61 +219,4 @@ angular.module('module.controller')
   }
 
   init();
-}])
-
-
-.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'preferences', function ($scope, $modalInstance, preferences) {
-  $scope.preferences = preferences;
- 
-//initiate length slider parms
-  $scope.selectedLength = $scope.preferences.length;
-  $scope.optionsLength = {
-    from: 1,
-    to: 20,
-    step: 1,
-    dimension: ''
-  };
-  
-  //initiate cost slider parms
-  $scope.selectedCost = $scope.preferences.cost;
-  $scope.optionsCost = {
-    from: 1,
-    to: 100,
-    step: 1,
-    dimension: '  $$'
-  };
-    
-  //initiate alc slider parms
-  $scope.selectedAlcohol = $scope.preferences.alcohol;
-  $scope.optionsAlc = {
-    from: 1,
-    to: 100,
-    step: 1,
-    dimension: ''
-  };
-    
-  //initiate distance slider parms
-  $scope.selectedDistance = $scope.preferences.distance;
-  $scope.optionsDist = {
-    from: 1,
-    to: 100,
-    step: 1,
-    dimension: ''
-  };
- 
-  $scope.ok = function () {
-    $modalInstance.close({
-      cost: $scope.selectedCost,
-      alcohol: $scope.selectedAlcohol,
-      distance: $scope.selectedDistance,
-      length: $scope.selectedLength
-    });
-    console.log($scope.selectedLength);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-  
 }]);
-  

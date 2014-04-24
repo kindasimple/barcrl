@@ -16,7 +16,8 @@
     "angular-bootstrap": "~0.10.0",
     "jquery-ui": "~1.10.4",
     "angular-google-maps": "~1.0.18",
-    "ng-slider": "*"
+    "ng-slider": "*",
+    "angular-moment": "~0.7.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",

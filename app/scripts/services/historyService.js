@@ -2,17 +2,18 @@
 
 angular.module('module.service')
 
-  .factory('historyService', ['$cookieStore', function ($cookieStore) {
+  .factory('historyService', ['$cookieStore', 'barService', function ($cookieStore, barService) {
     return {
-      addResult: function (guid, routes, name) {
+      addResult: function (guid, routes, preferences) {
         var history = $cookieStore.get('history');
         if(!history) {
           history = [];
         }
-        while(history.length > 50) {
+        while(history.length > 10) {
           history.pop();
         }
-        history.push({ guid: guid, timestamp: new Date().getTime(), name: name });
+        var bar = barService.getBarByBarId(preferences.startingBarId);
+        history.unshift({ guid: guid, timestamp: new Date(), name: 'from ' + bar.name, preferences: preferences});
         $cookieStore.put('history', history);
       },
       getRecent: function () {
